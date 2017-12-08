@@ -74,10 +74,28 @@ public class MainScreen {
 		frame.add(botoes);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				insereTupla();
+				frame.setVisible(true);
+			}
+		});
 		botoes.add(btnCadastrar);	
+		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// implementar update de tupla aqui
+			}
+		});
 		botoes.add(btnAlterar);
+		
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// implementar delecao de tupla aqui
+			}
+		});
 		botoes.add(btnExcluir);
 		
 		// TABELA TESTE
@@ -100,6 +118,36 @@ public class MainScreen {
 		
 		frame.pack();
 		frame.setLocationRelativeTo(null);
+	}
+	
+	public void insereTupla() {
+		JFrame cadastro = new JFrame("Novo cadastro");
+		cadastro.setBounds(100, 100, 800, 400);
+		
+		JPanel botoes = new JPanel();
+		FlowLayout botoesLay = new FlowLayout();
+		botoes.setLayout(botoesLay);
+		
+		JButton confirma = new JButton("Confirmar");
+		confirma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// implementar insercao da tupla aqui
+			}
+		});
+		botoes.add(confirma);
+		
+		JButton cancela = new JButton("Cancelar");
+		cancela.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cadastro.dispose();
+			}
+		});
+		botoes.add(cancela);
+
+		cadastro.add(botoes);
+		cadastro.pack();
+		cadastro.setLocationRelativeTo(null);
+		cadastro.setVisible(true);
 	}
 
 }
