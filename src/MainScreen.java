@@ -6,6 +6,12 @@ public class MainScreen {
 
 	private JFrame frame;
 	private JPanel botoes;
+	private JPanel filtros;
+	private JButton btnCadastrar;
+	private JButton btnExcluir;
+	private JButton btnAlterar;
+	private JButton btnFiltrar;
+	private JButton btnLimparFiltro;
 	private JMenu menu;
 	private JMenuBar barraMenu;
 	private JMenuItem testeRelatorio, sobre;
@@ -13,6 +19,9 @@ public class MainScreen {
 	private String strSobre = "Protótipo para manipulação de base de dados\n\n"
 			+ "Feito por:\nAlef Segura\nGustavo Moura\nThaís Lima\nYago Pessoa\n\n"
 			+ "Disciplina Base de Dados, 2017-2 - Prof. Robson";
+
+	private String strLabel = "Gerenciamento de dados da relação X";
+			//+ "da base de dados de Streaming de Video\n";
 	
 
 	/**
@@ -43,7 +52,7 @@ public class MainScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame("Streaming de Video");
-		frame.setBounds(100, 100, 600, 800);
+		frame.setBounds(100, 100, 600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		barraMenu = new JMenuBar();
@@ -67,22 +76,38 @@ public class MainScreen {
 		
 		BoxLayout mainLayout = new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS);
 		frame.setLayout(mainLayout);
-
+		
+		JPanel titulo = new JPanel();
+		FlowLayout tituloLay = new FlowLayout();
+		titulo.setLayout(tituloLay);
+		JLabel label = new JLabel(strLabel, SwingConstants.CENTER);
+		label.setFont(new Font("Arial", 1,20));
+		titulo.add(label);
+		frame.add(titulo);
+		
 		FlowLayout botoesLayout = new FlowLayout();
 		botoes = new JPanel();
 		botoes.setLayout(botoesLayout);
 		frame.add(botoes);
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
+		filtros = new JPanel();
+		filtros.setLayout(botoesLayout);
+		frame.add(filtros);
+		
+		JPanel botoesFiltros = new JPanel();
+		botoesFiltros.setLayout(botoesLayout);
+		frame.add(botoesFiltros);
+		
+		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				btnCadastrar.setEnabled(false);
 				insereTupla();
-				frame.setVisible(true);
 			}
 		});
 		botoes.add(btnCadastrar);	
 		
-		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// implementar update de tupla aqui
@@ -90,7 +115,7 @@ public class MainScreen {
 		});
 		botoes.add(btnAlterar);
 		
-		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// implementar delecao de tupla aqui
@@ -98,29 +123,46 @@ public class MainScreen {
 		});
 		botoes.add(btnExcluir);
 		
+		JLabel filtroLabel = new JLabel("Filtrar por nome:");
+		filtroLabel.setFont(new Font("Arial", 1, 14));
+		filtros.add(filtroLabel);
+		
+		JTextField txtFiltro = new JTextField(8);
+		txtFiltro.setFont(new Font("Arial", 1, 14));
+		filtros.add(txtFiltro);
+		
+		btnFiltrar = new JButton("Filtrar");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// filtar pelo palavra-chave do txtFiltro
+			}
+		});
+		botoesFiltros.add(btnFiltrar);
+		
+		btnLimparFiltro = new JButton("Limpar filtro");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// atualizar a tabela completa
+			}
+		});
+		botoesFiltros.add(btnLimparFiltro);
+		
 		// TABELA TESTE
-		String [] colunas = {"Nome", "Telefone", "Email"};
+		String [] colunas = {"Campo_1", "Campo_2", "Campo_3"};
 		Object [][] dados = {
-				{"Maria da Silva", "11 1111-1111", "maria@gmail.com"},
-				{"José Luiz", "22 2222-2222", "jose@gmail.com"},
-				{"Yago Pessoa", "33 3333-3333", "yago@gmail.com"},
-				{"Maria da Silva", "11 1111-1111", "maria@gmail.com"},
-				{"José Luiz", "22 2222-2222", "jose@gmail.com"},
-				{"Yago Pessoa", "33 3333-3333", "yago@gmail.com"},
-				{"Maria da Silva", "11 1111-1111", "maria@gmail.com"},
-				{"José Luiz", "22 2222-2222", "jose@gmail.com"},
-				{"Yago Pessoa", "33 3333-3333", "yago@gmail.com"}
+				{"", "", ""}
 		};
 		
 		JTable tabela = new JTable(dados, colunas);
 		JScrollPane barraRolagem = new JScrollPane(tabela);
 		frame.add(barraRolagem);
 		
-		frame.pack();
+		//frame.pack();
 		frame.setLocationRelativeTo(null);
 	}
 	
 	public void insereTupla() {
+
 		JFrame cadastro = new JFrame("Novo cadastro");
 		cadastro.setBounds(100, 100, 800, 400);
 		
@@ -132,6 +174,9 @@ public class MainScreen {
 		confirma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// implementar insercao da tupla aqui
+				
+				btnCadastrar.setEnabled(true);
+				frame.setVisible(true);
 			}
 		});
 		botoes.add(confirma);
@@ -140,14 +185,17 @@ public class MainScreen {
 		cancela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cadastro.dispose();
+				btnCadastrar.setEnabled(true);
+				frame.setVisible(true);
 			}
 		});
 		botoes.add(cancela);
 
 		cadastro.add(botoes);
-		cadastro.pack();
+		//cadastro.pack();
 		cadastro.setLocationRelativeTo(null);
 		cadastro.setVisible(true);
+
 	}
 
 }
