@@ -20,8 +20,13 @@ public class MainScreen {
 			+ "Feito por:\nAlef Segura\nGustavo Moura\nThaís Lima\nYago Pessoa\n\n"
 			+ "Disciplina Base de Dados, 2017-2 - Prof. Robson";
 
-	private String strLabel = "Gerenciamento de dados da relação X";
+	private String strLabel = "Gerenciamento de acessos de Usuários a Dispositivos";
 			//+ "da base de dados de Streaming de Video\n";
+	
+	
+	// TESTE LISTA JBOX
+	String [] listaDispositivos = {"TV Samsumg", "Tablet", "PC-Sala"};
+	String [] listaUsuarios = {"Maria Joana", "Jose da Silva", "Paulo César"};
 	
 
 	/**
@@ -54,6 +59,7 @@ public class MainScreen {
 		frame = new JFrame("Streaming de Video");
 		frame.setBounds(100, 100, 600, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		
 		barraMenu = new JMenuBar();
 		menu = new JMenu("Opções");
@@ -91,12 +97,12 @@ public class MainScreen {
 		frame.add(botoes);
 		
 		filtros = new JPanel();
-		filtros.setLayout(botoesLayout);
-		frame.add(filtros);
+		//filtros.setLayout(botoesLayout);
+		//frame.add(filtros);
 		
 		JPanel botoesFiltros = new JPanel();
-		botoesFiltros.setLayout(botoesLayout);
-		frame.add(botoesFiltros);
+		//botoesFiltros.setLayout(botoesLayout);
+		//frame.add(botoesFiltros);
 		
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -148,9 +154,9 @@ public class MainScreen {
 		botoesFiltros.add(btnLimparFiltro);
 		
 		// TABELA TESTE
-		String [] colunas = {"Campo_1", "Campo_2", "Campo_3"};
+		String [] colunas = {"Dispositivo", "Usuário", "Horário", "Endereço IP"};
 		Object [][] dados = {
-				{"", "", ""}
+				{"", "", "", ""}
 		};
 		
 		JTable tabela = new JTable(dados, colunas);
@@ -164,7 +170,49 @@ public class MainScreen {
 	public void insereTupla() {
 
 		JFrame cadastro = new JFrame("Novo cadastro");
-		cadastro.setBounds(100, 100, 800, 400);
+		cadastro.setBounds(100, 100, 700, 250);
+		cadastro.setAlwaysOnTop(true);
+		cadastro.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		cadastro.setResizable(false);
+		
+		BoxLayout cadastroLay = new BoxLayout(cadastro.getContentPane(), BoxLayout.Y_AXIS);
+		cadastro.getContentPane().setLayout(cadastroLay);
+		
+		JPanel campos = new JPanel();
+		GridLayout camposLay = new GridLayout(4, 2);
+		//FlowLayout camposLay = new FlowLayout();
+		campos.setLayout(camposLay);
+		
+		JLabel dispositivoLabel = new JLabel("Dispositivo:");
+		dispositivoLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(dispositivoLabel);
+		
+		final JComboBox<String> dispositivosJB = new JComboBox<>(listaDispositivos);
+		campos.add(dispositivosJB);
+		
+		JLabel usuarioLabel = new JLabel("Usuario:");
+		usuarioLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(usuarioLabel);
+		
+		final JComboBox<String> usuariosJB = new JComboBox<>(listaUsuarios);
+		campos.add(usuariosJB);
+		
+		JLabel horarioLabel = new JLabel("Horário do acesso:");
+		horarioLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(horarioLabel);
+		
+		JTextField txtHorario = new JTextField(16);
+		txtHorario.setFont(new Font("Arial", 1, 14));
+		campos.add(txtHorario);
+		
+		JLabel ipLabel = new JLabel("Endereço de IP:");
+		ipLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(ipLabel);
+		
+		JTextField txtIP = new JTextField(16);
+		txtIP.setFont(new Font("Arial", 1, 14));
+		campos.add(txtIP);
+		
 		
 		JPanel botoes = new JPanel();
 		FlowLayout botoesLay = new FlowLayout();
@@ -173,8 +221,9 @@ public class MainScreen {
 		JButton confirma = new JButton("Confirmar");
 		confirma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// implementar insercao da tupla aqui
+				// implementar insercao da tupla no bd aqui
 				
+				cadastro.dispose();
 				btnCadastrar.setEnabled(true);
 				frame.setVisible(true);
 			}
@@ -191,8 +240,9 @@ public class MainScreen {
 		});
 		botoes.add(cancela);
 
+		cadastro.add(campos);
 		cadastro.add(botoes);
-		//cadastro.pack();
+		cadastro.pack();
 		cadastro.setLocationRelativeTo(null);
 		cadastro.setVisible(true);
 
