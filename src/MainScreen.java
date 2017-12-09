@@ -2,6 +2,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.sun.corba.se.pept.encoding.InputObject;
+import com.sun.corba.se.pept.encoding.OutputObject;
+import com.sun.corba.se.pept.protocol.MessageMediator;
+import com.sun.corba.se.pept.transport.Acceptor;
+import com.sun.corba.se.pept.transport.Connection;
+import com.sun.corba.se.pept.transport.ConnectionCache;
+import com.sun.corba.se.pept.transport.ContactInfo;
+import com.sun.corba.se.pept.transport.EventHandler;
+
 public class MainScreen {
 
 	private JFrame frame;
@@ -16,17 +25,17 @@ public class MainScreen {
 	private JMenuBar barraMenu;
 	private JMenuItem testeRelatorio, sobre;
 	
-	private String strSobre = "Protótipo para manipulação de base de dados\n\n"
-			+ "Feito por:\nAlef Segura\nGustavo Moura\nThaís Lima\nYago Pessoa\n\n"
+	private String strSobre = "Protï¿½tipo para manipulaï¿½ï¿½o de base de dados\n\n"
+			+ "Feito por:\nAlef Segura\nGustavo Moura\nThaï¿½s Lima\nYago Pessoa\n\n"
 			+ "Disciplina Base de Dados, 2017-2 - Prof. Robson";
 
-	private String strLabel = "Gerenciamento de acessos de Usuários a Dispositivos";
+	private String strLabel = "Gerenciamento de acessos de Usuï¿½rios a Dispositivos";
 			//+ "da base de dados de Streaming de Video\n";
 	
 	
 	// TESTE LISTA JBOX
 	String [] listaDispositivos = {"TV Samsumg", "Tablet", "PC-Sala"};
-	String [] listaUsuarios = {"Maria Joana", "Jose da Silva", "Paulo César"};
+	String [] listaUsuarios = {"Maria Joana", "Jose da Silva", "Paulo Cï¿½sar"};
 	
 
 	/**
@@ -62,11 +71,14 @@ public class MainScreen {
 		frame.setResizable(false);
 		
 		barraMenu = new JMenuBar();
-		menu = new JMenu("Opções");
-		testeRelatorio = new JMenuItem("Gerar relatório");
+		menu = new JMenu("Opï¿½ï¿½es");
+		testeRelatorio = new JMenuItem("Gerar relatï¿½rio");
 		testeRelatorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// implementar a consulta na base de dados
+				IntegrateSQL sqlIntegration = new IntegrateSQL();
+				Connection con = new Connection();
+				sqlIntegration.viewTable(con, "name"); //colocar nome aqui
+			
 			}
 		});
 		sobre = new JMenuItem("Sobre");
@@ -154,7 +166,7 @@ public class MainScreen {
 		botoesFiltros.add(btnLimparFiltro);
 		
 		// TABELA TESTE
-		String [] colunas = {"Dispositivo", "Usuário", "Horário", "Endereço IP"};
+		String [] colunas = {"Dispositivo", "Usuï¿½rio", "Horï¿½rio", "Endereï¿½o IP"};
 		Object [][] dados = {
 				{"", "", "", ""}
 		};
@@ -197,7 +209,7 @@ public class MainScreen {
 		final JComboBox<String> usuariosJB = new JComboBox<>(listaUsuarios);
 		campos.add(usuariosJB);
 		
-		JLabel horarioLabel = new JLabel("Horário do acesso:");
+		JLabel horarioLabel = new JLabel("Horï¿½rio do acesso:");
 		horarioLabel.setFont(new Font("Arial", 1, 14));
 		campos.add(horarioLabel);
 		
@@ -205,7 +217,7 @@ public class MainScreen {
 		txtHorario.setFont(new Font("Arial", 1, 14));
 		campos.add(txtHorario);
 		
-		JLabel ipLabel = new JLabel("Endereço de IP:");
+		JLabel ipLabel = new JLabel("Endereï¿½o de IP:");
 		ipLabel.setFont(new Font("Arial", 1, 14));
 		campos.add(ipLabel);
 		
