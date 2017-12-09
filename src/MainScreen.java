@@ -245,7 +245,6 @@ public class MainScreen {
 		cadastro.pack();
 		cadastro.setLocationRelativeTo(null);
 		cadastro.setVisible(true);
-
 	}
 
 }
