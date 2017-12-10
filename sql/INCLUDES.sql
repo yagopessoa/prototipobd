@@ -47,14 +47,6 @@ VALUES ("111.111.111-00", "Básico"),
 	   ("555.555.555-00", "Master");
 
 	   
-INSERT INTO usuario ()
-VALUES ("111.111.111-00", "Maria da Silva", "ms@gmail.com"),
-	   ("222.222.222-00", "José Alfredo Costa", "jac@gmail.com"),
-	   ("333.333.333-00", "Carla Nobrega", "cn@gmail.com"),
-	   ("444.444.444-00", "Ronaldo Ferreira", "rf@gmail.com"),
-	   ("555.555.555-00", "Natana Aguiar", "na@gmail.com");
-	   
-	   
 INSERT INTO genero (nomeGenero)
 VALUES ("Ficção Científica"),
 	   ("Infanto Juvenil"),
@@ -78,6 +70,7 @@ VALUES (1, "Star Wars - O Império Contra ataca", "filme"),
 	   (4, "Harry Potter e a Câmara Secreta", "filme"),
 	   (5, "Friends", "série");
       
+
 INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero)
 VALUES ("111.111.111-00", "Maria", "Ficção Científica", "10", "10/01/2017"),
 	   ("111.111.111-00", "Maria", "Infanto Juvenil", "10", "10/01/2017"),
@@ -85,11 +78,21 @@ VALUES ("111.111.111-00", "Maria", "Ficção Científica", "10", "10/01/2017"),
 	   ("444.444.444-00", "Ronaldo", "Aventura", "8", "01/11/2017"),
 	   ("555.555.555-00", "Natana", "Terror", "4", "03/12/2017");
 
+
 INSERT INTO amizade (usuarioSolic, usuarioAceit, dataSolic, dataAceito)
 VALUES ("111.111.111-00", "Maria", "333.333.333-00", "Carla", "10/05/2017", "11/05/2017"),
 	   ("111.111.111-00", "Carla", "444.444.444-00", "Ronaldo", "10/01/2017", "12/01/2017"),
 	   ("444.444.444-00", "Ronaldo", "555.555.555-00", "Natana", "01/10/2017", "05/10/2017"),
 	   ("444.444.444-00", "Ronaldo","111.111.111-00", "Maria", "01/11/2017", "01/11/2017");
+
+
+INSERT INTO usuario ()
+VALUES ("111.111.111-00", "Maria da Silva", "ms@gmail.com"),
+	   ("222.222.222-00", "José Alfredo Costa", "jac@gmail.com"),
+	   ("333.333.333-00", "Carla Nobrega", "cn@gmail.com"),
+	   ("444.444.444-00", "Ronaldo Ferreira", "rf@gmail.com"),
+	   ("555.555.555-00", "Natana Aguiar", "na@gmail.com");
+	   
 
 INSERT INTO adulto (usuario, apelido, preferencia, qualidade, legenda, idioma)
 /* ??????????????????*/
