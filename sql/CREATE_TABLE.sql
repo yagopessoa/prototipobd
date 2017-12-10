@@ -61,20 +61,21 @@ CREATE TABLE genero (
 
 
 CREATE TABLE tem (
-	
+	genero VARCHAR2(100) NOT NULL,
+	video NUMBER(4,0) NOT NULL,
+
+	/*constraints*/
 );
 
 
 CREATE TABLE video (
-	codigo  NUMBER(4,0) NOT NULL,
+	codigo NUMBER(4,0) NOT NULL,
 	titulo VARCHAR2(50) NOT NULL,
 	/*tipovideo*/
 );
 
-
 CREATE TABLE avaliagenero ();
 CREATE TABLE amizade ();
-
 
 CREATE TABLE usuario (
 	cpf CHAR(11) NOT NULL,
@@ -85,9 +86,16 @@ CREATE TABLE usuario (
 	CONSTRAINT PK_usuario PRIMARY KEY(cpf)
 );
 
-
 CREATE TABLE adulto ();
-CREATE TABLE tipoperfil ();
+
+CREATE TABLE tipoperfil (
+	usuario CHAR(11) NOT NULL,
+	apelido VARCHAR2(50) NOT NULL,
+	tipoperfil NUMBER(1,0) NOT NULL,
+
+	/*constraints*/
+);
+
 CREATE TABLE infantil ();
 CREATE TABLE gerencia ();
 CREATE TABLE avaliafilme ();
@@ -101,7 +109,6 @@ CREATE TABLE assistefilme ();
 CREATE TABLE recomenda ();
 CREATE TABLE acesso ();
 
-
 CREATE TABLE dispositivo (
 	codigo NUMBER(4,0) NOT NULL,
 	nome VARCHAR2(100) NOT NULL,
@@ -110,9 +117,17 @@ CREATE TABLE dispositivo (
 	CONSTRAINT PK_dispositivo PRIMARY KEY(codigo)
 );
 
-
 CREATE TABLE periodopaga ();
-CREATE TABLE paga ();
+
+CREATE TABLE paga (
+	codigo NUMBER(4,0),
+	nome_dispositivo VARCHAR2(100),
+	versao_so VARCHAR2(30),
+
+	CONSTRAINT PK_paga PRIMARY KEY(codigo)
+	/*second key*/
+);
+
 CREATE TABLE cadastropagamento ();
 CREATE TABLE cartao ();
 CREATE TABLE debito ();
