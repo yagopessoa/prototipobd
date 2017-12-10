@@ -34,17 +34,19 @@ VALUES (1,1),
 
 
 INSERT INTO planodeassinatura ()
-VALUES ("Básico", "25,00", "100 diferentes opções de filmes e séries"),
-       ("Família", "100,00", "Possível dividir o valor com até 5 pessoas e ter acesso a 100 diferentes opções de filmes e séries"),
-       ("Master", "50,00", "Acesso ilimitado a todos os filmes e séries");
+VALUES ("Básico", "25,00", "Assista em 1 tela, com 100 diferentes opções de filmes e séries por mês"),
+	   ("Padrão", "30,00", "Assista em 1 tela, com 200 diferentes opções de filmes e séries por mês"),
+       ("Familiar", "40,00", "Assista em 3 telas, com 200 diferentes opções de filmes e séries por mês"),
+       ("Master", "50,00", "Assista em quantas telas quiser, com 300 diferentes opções de filmes e séries por mês"),
+       ("Premium", "60,00", "Assista em quantas telas quiser, quantos filmes e séries quiser");
 
 
 INSERT INTO seleciona (usuario, planoDeAssinatura)
-VALUES ("111.111.111-00", "Básico"),
-	   ("222.222.222-00", "Familiar"),
-	   ("333.333.333-00", "Master"),
-	   ("444.444.444-00", "Básico"),
-	   ("555.555.555-00", "Master");
+VALUES ("398.356.665-01 ", "Básico"),
+	   ("225.265.985-03", "Familiar"),
+	   ("464.566.956-15", "Master"),
+	   ("558.987.523-12", "Básico"),
+	   ("662.596.684-05", "Master");
 
 	   
 INSERT INTO genero (nomeGenero)
@@ -52,7 +54,14 @@ VALUES ("Ficção Científica"),
 	   ("Infanto Juvenil"),
 	   ("Aventura"),
 	   ("Terror"),
-	   ("Comédia");
+	   ("Comédia"),
+	   ("Drama"),
+	   ("Suspense"),
+	   ("Documentário"),
+	   ("Ação"),
+	   ("Animação"),
+	   ("LGBT"),
+	   ("Estrangeiro");
 
 
 INSERT INTO tem ()
@@ -72,43 +81,43 @@ VALUES (1, "Star Wars - O Império Contra ataca", "filme"),
       
 
 INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero)
-VALUES ("111.111.111-00", "Maria", "Ficção Científica", "10", "10/01/2017"),
-	   ("111.111.111-00", "Maria", "Infanto Juvenil", "10", "10/01/2017"),
-	   ("333.333.333-00", "Carla", "Ficção Científica", "8", "01/10/2017"),
-	   ("444.444.444-00", "Ronaldo", "Aventura", "8", "01/11/2017"),
-	   ("555.555.555-00", "Natana", "Terror", "4", "03/12/2017");
+VALUES ("398.356.665-01 ", "Maria", "Ficção Científica", "10", "10/01/2017"),
+	   ("398.356.665-01 ", "Maria", "Infanto Juvenil", "10", "10/01/2017"),
+	   ("464.566.956-15", "Carla", "Ficção Científica", "8", "01/10/2017"),
+	   ("558.987.523-12", "Ronaldo", "Aventura", "8", "01/11/2017"),
+	   ("662.596.684-05", "Natana", "Terror", "4", "03/12/2017");
 
 
 INSERT INTO amizade (usuarioSolic, usuarioAceit, dataSolic, dataAceito)
-VALUES ("111.111.111-00", "Maria", "333.333.333-00", "Carla", "10/05/2017", "11/05/2017"),
-	   ("111.111.111-00", "Carla", "444.444.444-00", "Ronaldo", "10/01/2017", "12/01/2017"),
-	   ("444.444.444-00", "Ronaldo", "555.555.555-00", "Natana", "01/10/2017", "05/10/2017"),
-	   ("444.444.444-00", "Ronaldo","111.111.111-00", "Maria", "01/11/2017", "01/11/2017");
+VALUES ("398.356.665-01 ", "Maria", "464.566.956-15", "Carla", "10/05/2017", "11/05/2017"),
+	   ("398.356.665-01 ", "Carla", "558.987.523-12", "Ronaldo", "10/01/2017", "12/01/2017"),
+	   ("558.987.523-12", "Ronaldo", "662.596.684-05", "Natana", "01/10/2017", "05/10/2017"),
+	   ("558.987.523-12", "Ronaldo","398.356.665-01 ", "Maria", "01/11/2017", "01/11/2017");
 
 
 INSERT INTO usuario ()
-VALUES ("111.111.111-00", "Maria da Silva", "ms@gmail.com"),
-	   ("222.222.222-00", "José Alfredo Costa", "jac@gmail.com"),
-	   ("333.333.333-00", "Carla Nobrega", "cn@gmail.com"),
-	   ("444.444.444-00", "Ronaldo Ferreira", "rf@gmail.com"),
-	   ("555.555.555-00", "Natana Aguiar", "na@gmail.com");
+VALUES ("398.356.665-01 ", "Maria da Silva", "ms@gmail.com", "12/05/1998"),
+	   ("225.265.985-03", "José Alfredo Costa", "jac@gmail.com", "01/10/1960"),
+	   ("464.566.956-15", "Carla Nobrega", "cn@gmail.com", "03/05/1970"),
+	   ("558.987.523-12", "Ronaldo Ferreira", "rf@gmail.com", "05/09/1995"),
+	   ("662.596.684-05", "Natana Aguiar", "na@gmail.com", "29/01/1986");
 	   
 
 INSERT INTO adulto (usuario, apelido, preferencia, qualidade, legenda, idioma)
 /* ??????????????????*/
-VALUES ("111.111.111-00", "Maria", ""),
-	   ("333.333.333-00", "Carla", ),
-	   ("444.444.444-00", "Ronaldo",),
-	   ("555.555.555-00", "Natana", );
+VALUES ("398.356.665-01 ", "Maria", ""),
+	   ("464.566.956-15", "Carla", ),
+	   ("558.987.523-12", "Ronaldo",),
+	   ("662.596.684-05", "Natana", );
 
 
 INSERT INTO tipoperfil (usuario, apelido, tipoPerfil)
 /*tipoperfil ???????????*/
-VALUES ("111.111.111-00", "Maria da Silva",""),
-	   ("222.222.222-00", "José Alfredo Costa", ""),
-	   ("333.333.333-00", "Carla Nobrega", ""),
-	   ("444.444.444-00", "Ronaldo Ferreira",""),
-	   ("555.555.555-00", "Natana Aguiar","" );
+VALUES ("398.356.665-01 ", "Maria da Silva",""),
+	   ("225.265.985-03", "José Alfredo Costa", ""),
+	   ("464.566.956-15", "Carla Nobrega", ""),
+	   ("558.987.523-12", "Ronaldo Ferreira",""),
+	   ("662.596.684-05", "Natana Aguiar","" );
 
 
 INSERT INTO gerencia ()

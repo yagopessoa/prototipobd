@@ -52,7 +52,7 @@ CREATE TABLE planodeassinatura (
 
 
 CREATE TABLE seleciona (
-	usuario CHAR(11) NOT NULL,
+	usuario char(14) NOT NULL,
 	planodeassinatura VARCHAR2(100) NOT NULL,
 
 	CONSTRAINT PK_seleciona PRIMARY KEY(usuario),
@@ -89,7 +89,7 @@ CREATE TABLE video (
 
 
 CREATE TABLE avaliagenero (
-	usuario CHAR(11) NOT NULL,
+	usuario char(14) NOT NULL,
 	apelido VARCHAR2(50) NOT NULL,
 	genero VARCHAR2(100) NOT NULL,
 	nota NUMBER(3, 1) NOT NULL,
@@ -103,8 +103,8 @@ CREATE TABLE avaliagenero (
 
 
 CREATE TABLE amizade (
-	usuario_solicita CHAR(11) NOT NULL,
-	usuario_aceita CHAR(11) NOT NULL,
+	usuario_solicita char(14) NOT NULL,
+	usuario_aceita char(14) NOT NULL,
 	data_solicitado DATE NOT NULL,
 	data_aceito DATE NOT NULL,	/* data_aceito tem que ser posterior à data_solicitado */
 
@@ -115,7 +115,7 @@ CREATE TABLE amizade (
 
 
 CREATE TABLE usuario (
-	cpf CHAR(11) NOT NULL,
+	cpf CHAR(14) NOT NULL,
 	nome VARCHAR2(100) NOT NULL,
 	email VARCHAR2(100) NOT NULL,
 	data_nascimento DATE NOT NULL,
@@ -124,51 +124,52 @@ CREATE TABLE usuario (
 );
 
 
-CREATE TABLE adulto (
-	usuario CHAR(11) NOT NULL,
+CREATE TABLE adulto (  /*verificar*/
+	usuario char(14) NOT NULL,
 	apelido VARCHAR2(50) NOT NULL,
-	preferencia VARCHAR2(100),	/* genero preferido */
+	genero_prefere VARCHAR2(100),	/* genero preferido */
 	qualidade VARCHAR2(5) NOT NULL,
-	legenda VARCHAR2(50) NOT NULL,	/* opcao preferencial de legenda */
-	idioma VARCHAR2(50) NOT NULL,	/* opcao preferencial de idioma */
+	legenda_prefere VARCHAR2(50) NOT NULL,	/* opcao preferencial de legenda */
+	idioma_prefere VARCHAR2(50) NOT NULL,	/* opcao preferencial de idioma */
 
 	CONSTRAINT PK_adulto PRIMARY KEY(usuario, apelido),
 	CONSTRAINT FK_usuario FOREIGN KEY(usuario, apelido) REFERENCES tipoperfil,
 	CONSTRAINT CK_legenda CHECK(legenda IN linguas),
 	CONSTRAINT CK_idioma CHECK(idioma IN linguas),
-	CONSTRAINT CK_qualidade CHECK(qualidade IN ("360p", "480p", "720p", "1080p")),
-	CONSTRAINT CK_preferencia CHECK(preferencia IN genero)
+	CONSTRAINT CK_qualidade CHECK(qualidade IN ("360p", "480p", "720p", "1080p", "HD", "4K")),
+	CONSTRAINT CK_preferencia CHECK(preferencia IN genero) /*k: deveria ser chave estrangeira*/
 );
 
 
 CREATE TABLE tipoperfil (
-	usuario CHAR(11) NOT NULL,
+	usuario char(14) NOT NULL,
 	apelido VARCHAR2(50) NOT NULL,
 	tipoperfil VARCHAR2(20) NOT NULL,
 
 	CONSTRAINT PK_tipoperfil PRIMARY KEY(usuario, apelido),
 	CONSTRAINT FK_usuario FOREIGN KEY(usuario) REFERENCES usuario,
-	CONSTRAINT CK_tipoperfil CHECK(tipoperfil="adulto" || tipoperfil="infantil")	/* correto? */
+	CONSTRAINT CK_tipoperfil CHECK(tipoperfil IN("adulto","infantil") /*k*/
+	/*CONSTRAINT CK_tipoperfil CHECK(tipoperfil="adulto" || tipoperfil="infantil")	/* correto? */
 );
 
 
 CREATE TABLE infantil (
-	usuario CHAR(11) NOT NULL,
+	usuario char(14) NOT NULL,
 	apelido VARCHAR2(50) NOT NULL,
 	preferencia VARCHAR2(100),	/* genero preferido */
-	faixa_etaria VARCHAR2(6) NOT NULL,	/* coloca em qual classificacao se encontra ou a idade? */
+	faixa_etaria VARCHAR2(6) NOT NULL,	/* coloca em qual classificacao se encontra ou a idade? k: coloca na classificação*/
 
 	CONSTRAINT PK_infantil PRIMARY KEY(usuario, apelido),
 	CONSTRAINT FK_usuario FOREIGN KEY(usuario, apelido) REFERENCES tipoperfil,
 	CONSTRAINT CK_faixaetaria CHECK(faixa_etaria IN("Livre", "10+", "12+", "14+", "16+", "18+")),
-	CONSTRAINT CK_preferencia CHECK(preferencia IN genero)
+	CONSTRAINT CK_preferencia CHECK(preferencia IN genero) /*k: acho que nesse caso é chave estrangeira né?*/
 );
 
 
 CREATE TABLE gerencia (
-	usuario_adulto CHAR(11) NOT NULL,
+	usuario_adulto char(14) NOT NULL,
 	apelido_adulto VARCHAR2(50) NOT NULL,
-	usuario_infantil CHAR(11) NOT NULL,
+	usuario_infantil char(14) NOT NULL,
 	apelido_infantil VARCHAR2(50) NOT NULL,
 
 	CONSTRAINT PK_gerencia PRIMARY KEY(usuario_infantil, apelido_infantil),
@@ -178,7 +179,7 @@ CREATE TABLE gerencia (
 
 
 CREATE TABLE avaliafilme (
-	perfil_usuario CHAR(11) NOT NULL,
+	perfil_usuario char(14) NOT NULL,
 	perfil_apelido VARCHAR2(50) NOT NULL,
 	filme NUMBER(4,0) NOT NULL,
 	nota NUMBER(3,1) NOT NULL,
@@ -193,7 +194,7 @@ CREATE TABLE avaliafilme (
 
 
 CREATE TABLE avaliaep (
-	perfil_usuario CHAR(11) NOT NULL,
+	perfil_usuario char(14) NOT NULL,
 	perfil_apelido VARCHAR2(50) NOT NULL,
 	episodio NUMBER(2,0) NOT NULL,
 	temporada NUMBER(2,0) NOT NULL,
@@ -261,7 +262,7 @@ CREATE TABLE temporada (
 	CONSTRAINT PK_temporada PRIMARY KEY(serie, nro_temporada),
 	CONSTRAINT FK_temporada_serie FOREIGN KEY(serie) REFERENCES serie,
 	CONSTRAINT CK_nrotemporada CHECK(nro_temporada >= 0),
-	CONSTRAINT CK_qtdepisodios CHECK(qtd_episodios >= 0) 
+	CONSTRAINT CK_qtdepisodios CHECK(qtd_episodios >= 1) 
 );
 
 
@@ -291,7 +292,7 @@ CREATE TABLE episodio (
 
 
 CREATE TABLE assisteep (
-	usuario CHAR(11) NOT NULL,
+	usuario char(14) NOT NULL,
 	apelido VARCHAR2(50) NOT NULL,
 	serie NUMBER(4,0) NOT NULL,
 	temporada NUMBER(2,0) NOT NULL,
@@ -309,7 +310,7 @@ CREATE TABLE assisteep (
 
 
 CREATE TABLE assistefilme (
-	usuario CHAR(11) NOT NULL,
+	usuario char(14) NOT NULL,
 	perfil VARCHAR2(50) NOT NULL,
 	filme NUMBER(4, 0) NOT NULL,
 	minutos_assistidos NUMBER(3, 0) NOT NULL,
@@ -322,9 +323,9 @@ CREATE TABLE assistefilme (
 
 
 CREATE TABLE recomenda (
-	usuario_recomenda CHAR(11) NOT NULL,
+	usuario_recomenda char(14) NOT NULL,
 	perf_recomenda VARCHAR2(50) NOT NULL,
-	usuario_recebe CHAR(11) NOT NULL,
+	usuario_recebe char(14) NOT NULL,
 	perf_recebe VARCHAR2(50) NOT NULL,
 	video NUMBER(4, 0) NOT NULL,
 	comentario VARCHAR2(200),
@@ -338,7 +339,7 @@ CREATE TABLE recomenda (
 
 CREATE TABLE acesso (
 	dispositivo NUMBER(4, 0) NOT NULL,
-	usuario CHAR(11) NOT NULL,
+	usuario CHAR(14) NOT NULL,
 	horario CHAR(8) NOT NULL,	/* hh:mm:ss */
 	ip CHAR(11)	NOT NULL,	/* ex: 192.168.1.2 */
 
@@ -380,7 +381,7 @@ CREATE TABLE paga (
 
 CREATE TABLE cadastropagamento (
 	id_opcao NUMBER(2, 0) NOT NULL,
-	usuario CHAR(11) NOT NULL,
+	usuario char(14) NOT NULL,
 	tipopagamento VARCHAR2(10) NOT NULL,
 
 	CONSTRAINT PK_cadastropagamento PRIMARY KEY(id_opcao, usuario),
@@ -390,10 +391,10 @@ CREATE TABLE cadastropagamento (
 
 CREATE TABLE cartao (
 	formadepagamento_id NUMBER(2,0) NOT NULL,
-	formadepagamento_usuario CHAR(11) NOT NULL,
+	formadepagamento_usuario char(14) NOT NULL,
 	numero CHAR(16) NOT NULL,
 	bandeira VARCHAR2(20) NOT NULL,
-	validade CHAR(5) NOT NULL, /* validade: MM/AA */ /* como garantir que não está vencido? */
+	validade CHAR(5) NOT NULL, /* validade: MM/AA */ /* como garantir que não está vencido? k: acho que é dever da aplicação*/
 	nome VARCHAR2(100) NOT NULL,
 	cod_seguranca NUMBER(3, 0),
 
@@ -404,8 +405,8 @@ CREATE TABLE cartao (
 
 CREATE TABLE debito (
 	formadepagamento_id NUMBER(2,0) NOT NULL,
-	formadepagamento_usuario CHAR(11) NOT NULL,
-	cpf CHAR(11) NOT NULL,
+	formadepagamento_usuario char(14) NOT NULL,
+	cpf CHAR(14) NOT NULL,
 	nome VARCHAR2(100) NOT NULL,
 	agencia VARCHAR2(20) NOT NULL,
 	conta VARCHAR2(20) NOT NULL,
@@ -418,7 +419,7 @@ CREATE TABLE debito (
 
 CREATE TABLE paypal (
 	formadepagamento_id NUMBER(2,0) NOT NULL,
-	formadepagamento_usuario CHAR(11) NOT NULL,
+	formadepagamento_usuario char(14) NOT NULL,
 	email VARCHAR2(100) NOT NULL,
 	senha VARCHAR2(50) NOT NULL,
 
