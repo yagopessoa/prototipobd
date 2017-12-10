@@ -71,11 +71,15 @@ CREATE TABLE tem (
 CREATE TABLE video (
 	codigo NUMBER(4,0) NOT NULL,
 	titulo VARCHAR2(50) NOT NULL,
-	/*tipovideo*/
+	tipovideo
 );
 
+
 CREATE TABLE avaliagenero ();
+
+
 CREATE TABLE amizade ();
+
 
 CREATE TABLE usuario (
 	cpf CHAR(11) NOT NULL,
@@ -86,7 +90,17 @@ CREATE TABLE usuario (
 	CONSTRAINT PK_usuario PRIMARY KEY(cpf)
 );
 
-CREATE TABLE adulto ();
+
+CREATE TABLE adulto (
+	usuario CHAR(11) NOT NULL,
+	apelido VARCHAR2(50) NOT NULL,
+	preferencia,
+	qualidade,
+	legenda,
+	idioma,
+
+);
+
 
 CREATE TABLE tipoperfil (
 	usuario CHAR(11) NOT NULL,
@@ -95,6 +109,7 @@ CREATE TABLE tipoperfil (
 
 	/*constraints*/
 );
+
 
 CREATE TABLE infantil (
 	usuario CHAR(11) NOT NULL,
@@ -144,7 +159,35 @@ CREATE TABLE avaliaep (
 );
 
 
-CREATE TABLE filme ();
+CREATE TABLE filme (
+	video NUMBER(4,0) NOT NULL,
+	sinopse VARCHAR2(200) NOT NULL,
+	faixa_etaria VARCHAR2(6) NOT NULL,
+	duracao VARCHAR2(6) NOT NULL,
+	ano NUMBER(4,0) NOT NULL,
+	thumb,							/*definir dominio*/
+	idioma VARCHAR2(50) NOT NULL,   /*criada nova tabela*/
+	legenda VARCHAR2(50) NOT NULL,	/*criada nova tabela*/
+
+	CONSTRAINT PK_filme PRIMARY KEY(video),
+	CONSTRAINT FK_filme_video FOREIGN KEY(video) REFERENCES video,
+	CONSTRAINT FK_filmeidioma_linguas FOREIGN KEY(idioma) REFERENCES linguas,
+	CONSTRAINT FK_filmelegenda_linguas FOREIGN KEY(legenda) REFERENCES linguas,
+	CONSTRAINT CK_faixaetaria CHECK(faixa_etaria IN("Livre", "10+", "12+", "14+", "16+", "18+")),
+	CONSTRAINT CK_duracao CHECK(duracao LIKE "%min"),
+	CONSTRAINT CK_ano CHECK(ano > 1900)
+);
+
+
+/*#############################################*/
+/*ALTERAR NOS MODELOS*/
+CREATE TABLE linguas (
+	lingua VARCHAR2(50) NOT NULL,
+
+	CONSTRAINT PK_linguas PRIMARY KEY(lingua)
+);
+
+/*#############################################*/
 
 
 CREATE TABLE serie ();
@@ -164,9 +207,16 @@ CREATE TABLE episodio (
 
 
 CREATE TABLE assisteep ();
+
+
 CREATE TABLE assistefilme ();
+
+
 CREATE TABLE recomenda ();
+
+
 CREATE TABLE acesso ();
+
 
 CREATE TABLE dispositivo (
 	codigo NUMBER(4,0) NOT NULL,
@@ -176,7 +226,9 @@ CREATE TABLE dispositivo (
 	CONSTRAINT PK_dispositivo PRIMARY KEY(codigo)
 );
 
+
 CREATE TABLE periodopaga ();
+
 
 CREATE TABLE paga (
 	codigo NUMBER(4,0),
@@ -187,7 +239,14 @@ CREATE TABLE paga (
 	/*second key*/
 );
 
+
 CREATE TABLE cadastropagamento ();
+
+
 CREATE TABLE cartao ();
+
+
 CREATE TABLE debito ();
+
+
 CREATE TABLE paypal ();
