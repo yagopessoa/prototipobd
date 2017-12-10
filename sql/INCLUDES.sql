@@ -92,7 +92,7 @@ VALUES ("111.111.111-00", "Maria", "333.333.333-00", "Carla", "10/05/2017", "11/
 	   ("444.444.444-00", "Ronaldo","111.111.111-00", "Maria", "01/11/2017", "01/11/2017");
 
 INSERT INTO adulto (usuario, apelido, preferencia, qualidade, legenda, idioma)
-// ??????????????????
+/* ??????????????????*/
 VALUES ("111.111.111-00", "Maria", ""),
 	   ("333.333.333-00", "Carla", ),
 	   ("444.444.444-00", "Ronaldo",),
@@ -100,7 +100,7 @@ VALUES ("111.111.111-00", "Maria", ""),
 
 
 INSERT INTO tipoperfil (usuario, apelido, tipoPerfil)
-//tipoperfil ???????????
+/*tipoperfil ???????????*/
 VALUES ("111.111.111-00", "Maria da Silva",""),
 	   ("222.222.222-00", "José Alfredo Costa", ""),
 	   ("333.333.333-00", "Carla Nobrega", ""),
