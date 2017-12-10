@@ -2,6 +2,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.sun.corba.se.pept.encoding.InputObject;
+import com.sun.corba.se.pept.encoding.OutputObject;
+import com.sun.corba.se.pept.protocol.MessageMediator;
+import com.sun.corba.se.pept.transport.Acceptor;
+import com.sun.corba.se.pept.transport.Connection;
+import com.sun.corba.se.pept.transport.ConnectionCache;
+import com.sun.corba.se.pept.transport.ContactInfo;
+import com.sun.corba.se.pept.transport.EventHandler;
+
 public class MainScreen {
 
 	private JFrame frame;
@@ -16,17 +25,19 @@ public class MainScreen {
 	private JMenuBar barraMenu;
 	private JMenuItem testeRelatorio, sobre;
 	
-	private String strSobre = "Protótipo para manipulação de base de dados\n\n"
-			+ "Feito por:\nAlef Segura\nGustavo Moura\nThaís Lima\nYago Pessoa\n\n"
+	private String strSobre = "Prototipo para manipulacao de base de dados\n\n"
+			+ "Feito por:\nAlef Segura\nGustavo Moura\nThais Lima\nYago Pessoa\n\n"
 			+ "Disciplina Base de Dados, 2017-2 - Prof. Robson";
 
-	private String strLabel = "Gerenciamento de acessos de Usuários a Dispositivos";
-			//+ "da base de dados de Streaming de Video\n";
+	private String strLabel = "Gerenciamento de Filmes"
+			+ " para Streaming de Video\n";
 	
+	String [] listaFaixaEt = {"Livre", "10", "12", "14", "16", "18"};
+	String [] listaIdioma = {"Ingles", "Portugues", "Espanhol"};
+	String [] listaLegenda = {"Nenhuma", "Portugues", "Ingles", "Espanhol"};
 	
 	// TESTE LISTA JBOX
-	String [] listaDispositivos = {"TV Samsumg", "Tablet", "PC-Sala"};
-	String [] listaUsuarios = {"Maria Joana", "Jose da Silva", "Paulo César"};
+	String [] listaVideos = {"O Lobo de Wall Street", "Titanic", "Homem-Aranha"};
 	
 
 	/**
@@ -57,16 +68,19 @@ public class MainScreen {
 	 */
 	private void initialize() {
 		frame = new JFrame("Streaming de Video");
-		frame.setBounds(100, 100, 600, 600);
+		frame.setBounds(100, 100, 860, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		
 		barraMenu = new JMenuBar();
-		menu = new JMenu("Opções");
-		testeRelatorio = new JMenuItem("Gerar relatório");
+		menu = new JMenu("Opcoes");
+		testeRelatorio = new JMenuItem("Gerar relatorio");
 		testeRelatorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// implementar a consulta na base de dados
+//				IntegrateSQL sqlIntegration = new IntegrateSQL();
+//				Connection con = new Connection();
+//				sqlIntegration.viewTable(con, "name"); //colocar nome aqui
+			
 			}
 		});
 		sobre = new JMenuItem("Sobre");
@@ -154,9 +168,9 @@ public class MainScreen {
 		botoesFiltros.add(btnLimparFiltro);
 		
 		// TABELA TESTE
-		String [] colunas = {"Dispositivo", "Usuário", "Horário", "Endereço IP"};
+		String [] colunas = {"Titulo", "Sinopse", "Classificacao Etaria", "Duracao (min)", "Ano", "Idioma", "Legenda"};
 		Object [][] dados = {
-				{"", "", "", ""}
+				{"", "", "", "", "", "", "", ""}
 		};
 		
 		JTable tabela = new JTable(dados, colunas);
@@ -179,39 +193,62 @@ public class MainScreen {
 		cadastro.getContentPane().setLayout(cadastroLay);
 		
 		JPanel campos = new JPanel();
-		GridLayout camposLay = new GridLayout(4, 2);
-		//FlowLayout camposLay = new FlowLayout();
+		GridLayout camposLay = new GridLayout(7, 2);
 		campos.setLayout(camposLay);
 		
-		JLabel dispositivoLabel = new JLabel("Dispositivo:");
-		dispositivoLabel.setFont(new Font("Arial", 1, 14));
-		campos.add(dispositivoLabel);
+		JLabel videosLabel = new JLabel("Videos sem cadastro:");
+		videosLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(videosLabel);
 		
-		final JComboBox<String> dispositivosJB = new JComboBox<>(listaDispositivos);
-		campos.add(dispositivosJB);
+		// exibir codigo + nome do video
+		// trazer videos do tipo "filme" e que nao tenha cadastro na tabela filmes
+		final JComboBox<String> videosJB = new JComboBox<>(listaVideos);
+		campos.add(videosJB);
 		
-		JLabel usuarioLabel = new JLabel("Usuario:");
-		usuarioLabel.setFont(new Font("Arial", 1, 14));
-		campos.add(usuarioLabel);
+		JLabel sinopseLabel = new JLabel("Sinopse:");
+		sinopseLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(sinopseLabel);
 		
-		final JComboBox<String> usuariosJB = new JComboBox<>(listaUsuarios);
-		campos.add(usuariosJB);
+		JTextField txtSinopse = new JTextField(14);
+		txtSinopse.setFont(new Font("Arial", 1, 14));
+		campos.add(txtSinopse);
 		
-		JLabel horarioLabel = new JLabel("Horário do acesso:");
-		horarioLabel.setFont(new Font("Arial", 1, 14));
-		campos.add(horarioLabel);
+		JLabel faixaEtLabel = new JLabel("Classificação Etaria:");
+		faixaEtLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(faixaEtLabel);
 		
-		JTextField txtHorario = new JTextField(16);
-		txtHorario.setFont(new Font("Arial", 1, 14));
-		campos.add(txtHorario);
+		final JComboBox<String> faixaEtJB = new JComboBox<>(listaFaixaEt);
+		campos.add(faixaEtJB);
 		
-		JLabel ipLabel = new JLabel("Endereço de IP:");
-		ipLabel.setFont(new Font("Arial", 1, 14));
-		campos.add(ipLabel);
+		JLabel duracaoLabel = new JLabel("Duracao (min):");
+		duracaoLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(duracaoLabel);
 		
-		JTextField txtIP = new JTextField(16);
-		txtIP.setFont(new Font("Arial", 1, 14));
-		campos.add(txtIP);
+		JTextField txtDuracao = new JTextField(14);
+		txtDuracao.setFont(new Font("Arial", 1, 14));
+		campos.add(txtDuracao);
+		
+		JLabel anoLabel = new JLabel("Ano:");
+		anoLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(anoLabel);
+		
+		JTextField txtAno = new JTextField(14);
+		txtAno.setFont(new Font("Arial", 1, 14));
+		campos.add(txtAno);
+		
+		JLabel idiomaLabel = new JLabel("Idioma:");
+		idiomaLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(idiomaLabel);
+		
+		final JComboBox<String> idiomaJB = new JComboBox<>(listaIdioma);
+		campos.add(idiomaJB);
+		
+		JLabel legendaLabel = new JLabel("Legenda:");
+		legendaLabel.setFont(new Font("Arial", 1, 14));
+		campos.add(legendaLabel);
+		
+		final JComboBox<String> legendaJB = new JComboBox<>(listaLegenda);
+		campos.add(legendaJB);
 		
 		
 		JPanel botoes = new JPanel();
@@ -221,7 +258,7 @@ public class MainScreen {
 		JButton confirma = new JButton("Confirmar");
 		confirma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// implementar insercao da tupla no bd aqui
+				// pegar os dados dos campos e fazer a operacao de insercao de tupla
 				
 				cadastro.dispose();
 				btnCadastrar.setEnabled(true);
@@ -245,7 +282,6 @@ public class MainScreen {
 		cadastro.pack();
 		cadastro.setLocationRelativeTo(null);
 		cadastro.setVisible(true);
-
 	}
 
 }
