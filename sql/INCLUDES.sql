@@ -109,7 +109,6 @@ VALUES ("111.111.111-00", "Maria da Silva",""),
 	   ("333.333.333-00", "Carla Nobrega", ""),
 	   ("444.444.444-00", "Ronaldo Ferreira",""),
 	   ("555.555.555-00", "Natana Aguiar","" );
-VALUES (),
 
 
 INSERT INTO gerencia ()
