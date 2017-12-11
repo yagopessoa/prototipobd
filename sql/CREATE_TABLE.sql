@@ -186,7 +186,7 @@ CREATE TABLE tipoperfil (
 
 	CONSTRAINT PK_tipoperfil PRIMARY KEY(usuario, apelido),
 	CONSTRAINT FK_usuario_tipoperfil FOREIGN KEY(usuario) REFERENCES usuario,
-	CONSTRAINT CK_tipoperfil CHECK(tipoperfil IN('adulto','infantil')
+	CONSTRAINT CK_tipoperfil CHECK(tipoperfil IN('adulto','infantil'))
 );
 
 CREATE TABLE avaliagenero (
@@ -265,7 +265,7 @@ CREATE TABLE filme (
 	CONSTRAINT FK_filmeidioma_linguas FOREIGN KEY(idioma) REFERENCES linguas,
 	CONSTRAINT FK_filmelegenda_linguas FOREIGN KEY(legenda) REFERENCES linguas,
 	CONSTRAINT CK_faixaetaria CHECK(faixa_etaria IN('Livre', '10+', '12+', '14+', '16+', '18+')),
-	CONSTRAINT CK_duracao CHECK(duracao LIKE "%min"),
+	CONSTRAINT CK_duracao CHECK(duracao LIKE '%min'),
 	CONSTRAINT CK_ano CHECK(ano > 1900)
 );
 
