@@ -8,8 +8,6 @@ Yago Rafael Pessoa     			- 9896218
 */
 
 
-
-
 INSERT INTO elenco (codigo, nome, e_ator, e_diretor) 
 VALUES 	(1, "Solange Silva Soares Santiago", 1, 1),
 		(2, "William Paulo Bruno", 1, 0),
