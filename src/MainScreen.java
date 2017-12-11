@@ -1,7 +1,13 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.*;
 
+/*
 import com.sun.corba.se.pept.encoding.InputObject;
 import com.sun.corba.se.pept.encoding.OutputObject;
 import com.sun.corba.se.pept.protocol.MessageMediator;
@@ -10,6 +16,18 @@ import com.sun.corba.se.pept.transport.Connection;
 import com.sun.corba.se.pept.transport.ConnectionCache;
 import com.sun.corba.se.pept.transport.ContactInfo;
 import com.sun.corba.se.pept.transport.EventHandler;
+*/
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainScreen {
 
@@ -32,12 +50,28 @@ public class MainScreen {
 	private String strLabel = "Gerenciamento de Filmes"
 			+ " para Streaming de Video\n";
 	
-	String [] listaFaixaEt = {"Livre", "10", "12", "14", "16", "18"};
+	String [] listaFaixaEt = {"Livre", "10+", "12+", "14+", "16+", "18+"};
 	String [] listaIdioma = {"Ingles", "Portugues", "Espanhol"};
 	String [] listaLegenda = {"Nenhuma", "Portugues", "Ingles", "Espanhol"};
 	
-	// TESTE LISTA JBOX
+
+	// LISTA FILMES TESTE
 	String [] listaVideos = {"O Lobo de Wall Street", "Titanic", "Homem-Aranha"};
+	
+	// TABELA TESTE
+	String [] colunas = {"Titulo", "Sinopse", "Classificacao Etaria", "Duracao (min)", "Ano", "Idioma", "Legenda"};
+	Object [][] dados = {
+			{"", "", "", "", "", "", "", ""}
+	};	
+	JTable tabela;
+	JScrollPane barraRolagem;
+	
+	
+	// VARIAVEIS DE CONEXAO
+	private Statement stmt;
+	private ResultSet rs;
+	private Connection connection;
+	private PreparedStatement pstmt;
 	
 
 	/**
@@ -67,6 +101,19 @@ public class MainScreen {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		/*CONEXAO*/
+		try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            connection = DriverManager.getConnection(
+                    "jdbc:oracle:thin:@grad.icmc.usp.br:15215:orcl",
+                    "9896218",	/* usuario */
+                    "a");		/* senha */
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, "Erro: "+ex);
+			System.out.println(ex.getMessage());
+		}
+		/*CONEXAO*/
+		
 		frame = new JFrame("Streaming de Video");
 		frame.setBounds(100, 100, 860, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,10 +124,11 @@ public class MainScreen {
 		testeRelatorio = new JMenuItem("Gerar relatorio");
 		testeRelatorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				IntegrateSQL sqlIntegration = new IntegrateSQL();
-//				Connection con = new Connection();
-//				sqlIntegration.viewTable(con, "name"); //colocar nome aqui
-			
+				/*
+				IntegrateSQL sqlIntegration = new IntegrateSQL();
+				Connection con = new Connection();
+				sqlIntegration.viewTable(con, "name"); //colocar nome aqui
+ 				*/
 			}
 		});
 		sobre = new JMenuItem("Sobre");
@@ -165,17 +213,13 @@ public class MainScreen {
 				// atualizar a tabela completa
 			}
 		});
-		botoesFiltros.add(btnLimparFiltro);
+		botoesFiltros.add(btnLimparFiltro);		
 		
-		// TABELA TESTE
-		String [] colunas = {"Titulo", "Sinopse", "Classificacao Etaria", "Duracao (min)", "Ano", "Idioma", "Legenda"};
-		Object [][] dados = {
-				{"", "", "", "", "", "", "", ""}
-		};
-		
-		JTable tabela = new JTable(dados, colunas);
-		JScrollPane barraRolagem = new JScrollPane(tabela);
+		tabela = new JTable(dados, colunas);
+		barraRolagem = new JScrollPane(tabela);
 		frame.add(barraRolagem);
+
+		updateTable();
 		
 		//frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -185,7 +229,7 @@ public class MainScreen {
 
 		JFrame cadastro = new JFrame("Novo cadastro");
 		cadastro.setBounds(100, 100, 700, 250);
-		cadastro.setAlwaysOnTop(true);
+		//cadastro.setAlwaysOnTop(true);
 		cadastro.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		cadastro.setResizable(false);
 		
@@ -260,6 +304,7 @@ public class MainScreen {
 			public void actionPerformed(ActionEvent e) {
 				// pegar os dados dos campos e fazer a operacao de insercao de tupla
 				
+				updateTable();
 				cadastro.dispose();
 				btnCadastrar.setEnabled(true);
 				frame.setVisible(true);
@@ -282,6 +327,29 @@ public class MainScreen {
 		cadastro.pack();
 		cadastro.setLocationRelativeTo(null);
 		cadastro.setVisible(true);
+	}
+	
+	public void updateTable() {
+		try {
+			/*SELECAO*/
+            String sql = "SELECT * FROM ALUNO";
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println(rs.getString("NUSP") + "-"
+                        + rs.getString("NOME") + "-"
+                        + rs.getString("IDADE") + "-"
+                        + rs.getString("DATANASC") + "-"
+                        + rs.getString("CIDADEORIGEM")
+                        );
+            }
+		    tabela.setModel(DbUtils.resultSetToTableModel(rs));
+		    barraRolagem.repaint();
+		    frame.repaint();
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(frame, "Erro: "+ex);
+			System.out.println(ex.getMessage());
+		}
 	}
 
 }

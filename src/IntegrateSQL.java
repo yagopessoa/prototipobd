@@ -7,7 +7,8 @@ public class IntegrateSQL {
 
 	public static void viewTable(Connection con, String dbName)
 		    throws SQLException {
-
+			
+			/*
 		    Statement stmt = null;
 		    String query = "select COF_NAME, SUP_ID, PRICE, " +
 		                   "SALES, TOTAL " +
@@ -30,6 +31,7 @@ public class IntegrateSQL {
 		    } finally {
 		        if (stmt != null) { stmt.close(); }
 		    }
+		    */
 		}
 	
 	
