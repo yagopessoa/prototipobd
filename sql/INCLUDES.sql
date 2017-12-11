@@ -82,10 +82,10 @@ VALUES (1, "Star Wars - O Império Contra ataca", "filme"),
 
 INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero)
 VALUES ("398.356.665-01 ", "Maria", "Ficção Científica", "10", "10/01/2017"),
-	   ("398.356.665-01 ", "Maria", "Infanto Juvenil", "10", "10/01/2017"),
+	   ("398.356.665-01 ", "Maria", "Terror", "10", "10/01/2017"),
 	   ("464.566.956-15", "Carla", "Ficção Científica", "8", "01/10/2017"),
 	   ("558.987.523-12", "Ronaldo", "Aventura", "8", "01/11/2017"),
-	   ("662.596.684-05", "Natana", "Terror", "4", "03/12/2017");
+	   ("662.596.684-05", "Natana", "Infanto Juvenil", "4", "03/12/2017");
 
 
 INSERT INTO amizade (usuarioSolic, usuarioAceit, dataSolic, dataAceito)
@@ -108,7 +108,6 @@ INSERT INTO adulto (usuario, apelido, preferencia, qualidade, legenda, idioma)
 VALUES ("398.356.665-01 ", "Maria", ""),
 	   ("464.566.956-15", "Carla", ),
 	   ("558.987.523-12", "Ronaldo",),
-	   ("662.596.684-05", "Natana", );
 
 
 INSERT INTO tipoperfil (usuario, apelido, tipoPerfil)
@@ -120,11 +119,19 @@ VALUES ("398.356.665-01 ", "Maria da Silva",""),
 	   ("662.596.684-05", "Natana Aguiar","" );
 
 
-INSERT INTO gerencia ()
-VALUES (),
+INSERT INTO gerencia (adulto, apelidoAdulto, usuarioInfantil, apelidoInfantil)
+VALUES ("398.356.665-01 ", "Maria", "225.265.985-03", "José"),
+	   ("464.566.956-15", "Carla", "662.596.684-05", "Natana"),
+	   ("558.987.523-12", "Ronaldo", "225.265.985-03", "José");
+	   
 
 
-INSERT INTO avaliafilme ()
+INSERT INTO infantil (usuario, apelido, preferencia, faixaEtaria)
+/*preferencia ???*/
+VALUES ("225.265.985-03", "José", "", "12-17"),
+	   ("662.596.684-05", "Natana", "", "7-10");
+
+INSERT INTO avaliafilme (perfilUsuario, perfilApelido, filme, nota, dataAvaliaFilme, opiniao)
 VALUES (),
 
 
