@@ -26,6 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,8 +52,8 @@ public class MainScreen {
 			+ " para Streaming de Video\n";
 	
 	String [] listaFaixaEt = {"Livre", "10+", "12+", "14+", "16+", "18+"};
-	String [] listaIdioma = {"Ingles", "Portugues", "Espanhol"};
-	String [] listaLegenda = {"Nenhuma", "Portugues", "Ingles", "Espanhol"};
+	String [] listaIdioma = {"English-USA", "Português-Brasil", "Español", "Deutsch", "Français"};
+	String [] listaLegenda = {"Português-Brasil", "Português-Portugal", "Español", "Français", "Deutsch", "English-USA", "English-UK"};
 	
 	// CREDENCIAS BD
 	private String usuario ="9896218";
@@ -109,7 +110,7 @@ public class MainScreen {
 		try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             connection = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@grad.icmc.usp.br:15215:orcl",
+                    "jdbc:oracle:thin:@grad.icmc.usp.br:15215:orcl",	
                     usuario,
                     senha);
 		} catch (Exception ex) {
@@ -120,7 +121,7 @@ public class MainScreen {
 		frame = new JFrame("Streaming de Video");
 		frame.setBounds(100, 100, 860, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		//frame.setResizable(false);
 		
 		barraMenu = new JMenuBar();
 		menu = new JMenu("Opcoes");
@@ -245,10 +246,20 @@ public class MainScreen {
 		videosLabel.setFont(new Font("Arial", 1, 14));
 		campos.add(videosLabel);
 		
-		// exibir codigo + nome do video
-		// trazer videos do tipo "filme" e que nao tenha cadastro na tabela filmes
-		final JComboBox<String> videosJB = new JComboBox<>(listaVideos);
-		campos.add(videosJB);
+		// exibir codigo(PENDENTE) + nome do video(OK)
+		// trazer videos do tipo "filme"(OK) e que nao tenha cadastro na tabela filmes(PENDENTE)
+		JComboBox<String> videosJB = new JComboBox<String>();
+		try {
+			String select = "SELECT titulo FROM video WHERE (tipoVideo = 'Filme' AND codigo NOT IN (SELECT video FROM filme))";
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(select);
+            while(rs.next()) {
+        		videosJB.addItem(rs.getString(1));
+            }
+    		campos.add(videosJB);
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
+		}	
 		
 		JLabel sinopseLabel = new JLabel("Sinopse:");
 		sinopseLabel.setFont(new Font("Arial", 1, 14));
@@ -306,17 +317,20 @@ public class MainScreen {
 				// pegar os dados dos campos e fazer a operacao de insercao de tupla
 				
 				try {
-					String select = "SELECT codigo FROM video WHERE (titulo = \"" + videosJB.getSelectedItem().toString() + "\")";
+					String select = "SELECT codigo FROM video WHERE (titulo = '" + videosJB.getSelectedItem().toString() + "')";
                     System.out.println(select);
                     
                     stmt = connection.createStatement();
                     rs = stmt.executeQuery(select);
+                    rs.next();
+					String cod_filme = rs.getString(1);
+                    System.out.println(cod_filme);
 
-					String cod_filme = rs.getString("codigo");
+//					String cod_filme = "10";	// TESTEEEEE
 					
 					String sql = "INSERT INTO filme (video, sinopse, faixa_etaria, duracao, ano, idioma, legenda)"
-							+ " VALUES ("+cod_filme+", "+txtSinopse.getText()+", "+faixaEtJB.getSelectedItem().toString()+", "+txtDuracao.getText()
-							+", "+txtAno.getText()+", "+idiomaJB.getSelectedItem().toString()+", "+legendaJB.getSelectedItem().toString()+")";
+							+ " VALUES ("+cod_filme+", '"+txtSinopse.getText()+"', '"+faixaEtJB.getSelectedItem().toString()+"', '"+txtDuracao.getText()
+							+"min', "+txtAno.getText()+", '"+idiomaJB.getSelectedItem().toString()+"', '"+legendaJB.getSelectedItem().toString()+"')";
                     System.out.println(sql);
 					
 					pstmt = connection.prepareStatement(sql);
@@ -366,6 +380,7 @@ public class MainScreen {
 		    tabela.setModel(DbUtils.resultSetToTableModel(rs));
 		    barraRolagem.repaint();
 		    frame.repaint();
+		    /*
             while (rs.next()) {
                 System.out.println(rs.getString("video") + "-"
                         + rs.getString("sinopse") + "-"
@@ -375,7 +390,7 @@ public class MainScreen {
                         + rs.getString("idioma") + "-"
                         + rs.getString("legenda")
                         );
-            }
+            }*/
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
 		}
