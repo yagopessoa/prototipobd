@@ -186,7 +186,7 @@ CREATE TABLE tipoperfil (
 
 	CONSTRAINT PK_tipoperfil PRIMARY KEY(usuario, apelido),
 	CONSTRAINT FK_usuario_tipoperfil FOREIGN KEY(usuario) REFERENCES usuario,
-	CONSTRAINT CK_tipoperfil CHECK(tipoperfil IN('adulto','infantil'))
+	CONSTRAINT CK_tipoperfil CHECK(tipoperfil IN('Adulto','Infantil'))
 );
 
 CREATE TABLE avaliagenero (
