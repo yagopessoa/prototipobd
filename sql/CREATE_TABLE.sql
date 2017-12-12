@@ -103,17 +103,9 @@ CREATE TABLE cadastropagamento (
 
 	CONSTRAINT PK_cadastropagamento PRIMARY KEY(id_opcao, usuario),
 	CONSTRAINT FK_usuario_cadastropagamento FOREIGN KEY(usuario) REFERENCES usuario
+	CONSTRAINT CK_tipopagamento CHECK(tipopagamento IN('Cartao', 'Paypal', 'Debito'))
 );
 
-CREATE TABLE paypal (
-	formadepagamento_id NUMBER(2,0) NOT NULL,
-	formadepagamento_usuario char(14) NOT NULL,
-	email VARCHAR2(100) NOT NULL,
-	senha VARCHAR2(50) NOT NULL,
-
-	CONSTRAINT PK_cartao PRIMARY KEY(formadepagamento_id, formadepagamento_usuario),
-	CONSTRAINT FK_cartao FOREIGN KEY(formadepagamento_id, formadepagamento_usuario) REFERENCES cadastropagamento(id_opcao, usuario)
-);
 
 CREATE TABLE dispositivo (
 	codigo NUMBER(4,0) NOT NULL,
@@ -130,7 +122,8 @@ CREATE TABLE paga (
 	formadepagamento_usuario CHAR(14) NOT NULL,
 
 	CONSTRAINT PK_paga PRIMARY KEY(codigo),
-	CONSTRAINT Uniq_paga UNIQUE(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario), /* chave secundaria */
+	CONSTRAINT UQ_paga UNIQUE(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario), /* chave secundaria */
+	CONSTRAINT FK_paga_planodeassinatura FOREIGN KEY(planodeassinatura) REFERENCES planodeassinatura,
 	CONSTRAINT FK_formadepagamento_id FOREIGN KEY(formadepagamento_id, formadepagamento_usuario) REFERENCES cadastropagamento(id_opcao, usuario)
 );
 
@@ -158,6 +151,18 @@ CREATE TABLE cartao (
 
 	CONSTRAINT PK_cartao2 PRIMARY KEY(formadepagamento_id, formadepagamento_usuario),
 	CONSTRAINT FK_cartao2 FOREIGN KEY(formadepagamento_id, formadepagamento_usuario) REFERENCES cadastropagamento(id_opcao, usuario)
+);
+
+
+CREATE TABLE paypal (
+	formadepagamento_id NUMBER(2,0) NOT NULL,
+	formadepagamento_usuario char(14) NOT NULL,
+	email VARCHAR2(100) NOT NULL,
+	senha VARCHAR2(50) NOT NULL,
+
+	CONSTRAINT PK_cartao PRIMARY KEY(formadepagamento_id, formadepagamento_usuario),
+	CONSTRAINT FK_cartao FOREIGN KEY(formadepagamento_id, formadepagamento_usuario) REFERENCES cadastropagamento(id_opcao, usuario),
+	CONSTRAINT CK_email CHECK(email LIKE '%@%.%')
 );
 
 CREATE TABLE periodopaga (

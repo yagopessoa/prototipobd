@@ -212,28 +212,72 @@ INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) 
 INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('558.987.523-12', 'Ronaldo', 'Aventura', '8', '01/11/2017');
 INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('662.596.684-05', 'Natana', 'Infanto Juvenil', '4', '03/12/2017');
 
-INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01 ', 'Maria Mãe', 1, 10, '12/06/2017');
-INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01 ', 'Maria Filha', 1, 5, '10/06/2017');
-INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 3, 9, '11/12/2017');
-INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 4, 8, '10/12/2017');
-INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 5, 7, '15/11/2017');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01 ', 'Maria Mãe', 1, 10, '12/06/2017', 'Achei o filme muito legal');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01 ', 'Maria Filha', 1, 5, '10/06/2017','Adorei o novo vilão! Não tanto o ator');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 3, 9, '11/12/2017','Gostei muito! Trouxeram de volta os mesmo atores!');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 4, 8, '10/12/2017','Incrível poder ver Stars Wars com os efeitos especiais atuais ');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 5, 7, '15/11/2017','Adorei! Quero fazer uma maratona!');
 
-INSERT INTO avaliaep () VALUES ();
+INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('558.987.523-12', 'Ronaldo', 1, 1, 9, 10, '08/08/2017', 'O Ross é o melhor');
+INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('558.987.523-12', 'Ronaldo', 1, 2, 9, 9, '07/09/2017', 'Ross é muito lerdo! Só minha mãe pra gostar dele');
+INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Natana', 1, 3, 9, 10, '12/10/2017', 'Só eu que choro de rir das piadas do Chandler? hahahaha');
+INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Natana', 1, 1, 9, 9, '04/11/2017', 'Oh the fuf');
+INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Anatan', 1, 2, 9, 10, '29/11/2017', 'Phoebe é a melhor personagem de todas! Haha');
 
-INSERT INTO recomenda VALUES ();
 
-INSERT INTO acesso VALUES ();
+INSERT INTO recomenda(usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ();
 
-INSERT INTO dispositivo VALUES ();
+INSERT INTO acesso(dispositivo, usuario, horario, ip) VALUES ();
 
-INSERT INTO periodopaga VALUES ();
+INSERT INTO dispositivo(codigo, nome, versao_so) VALUES ();
 
-INSERT INTO paga VALUES ();
 
-INSERT INTO cadastropagamento VALUES ();
 
-INSERT INTO cartao VALUES ();
+INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('398.356.665-01', 'Básico');
+INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('225.265.985-03', 'Familiar');
+INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('464.566.956-15', 'Master');
+INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('558.987.523-12', 'Básico');
+INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('662.596.684-05', 'Master');
 
-INSERT INTO debito VALUES ();
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (1, '398.356.665-01', 'Cartao');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (2, '398.356.665-01', 'Debito');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (3, '398.356.665-01', 'Paypal');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (1, '225.265.985-03', 'Cartao');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (2, '225.265.985-03', 'Debito');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (3, '225.265.985-03', 'Paypal');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (1, '464.566.956-15', 'Cartao');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (2, '464.566.956-15', 'Debito');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (3, '464.566.956-15', 'Paypal');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (1, '558.987.523-12', 'Cartao');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (2, '558.987.523-12', 'Debito');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (3, '558.987.523-12', 'Paypal');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (1, '662.596.684-05', 'Cartao');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (2, '662.596.684-05', 'Debito');
+INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (3, '662.596.684-05', 'Paypal');
 
-INSERT INTO paypal VALUES ();
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '398.356.665-01', '8856 0234 5794 7688', 'MasterCard', '12/28', 'Ezequiel A Pereira', '773');
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '225.265.985-03', '7521 4586 9812 8648', 'VISA', '02/25', 'Andreia Martins Silva', '688');
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '464.566.956-15', '1254 7658 9412 8426', 'MasterCard', '08/20', 'Leandra Leal', '387');
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '558.987.523-12', '3204 6504 9825 8113', 'Elo', '06/26', 'Patrícia Nishida Yamaki', '426');
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '662.596.684-05', '1254 4596 4571 4563', 'American Express', '10/23', 'Heitor Gonzaga Filho', '443');
+
+INSERT INTO debito(formadepagamento_id, formadepagamento_usuario, cpf, nome, agencia, conta, banco) VALUES(2, '398.356.665-01', '240.548.769-88', 'Ezequiel A Pereira', '1273', '1548545-7', 'Itau');
+INSERT INTO debito(formadepagamento_id, formadepagamento_usuario, cpf, nome, agencia, conta, banco) VALUES(2, '225.265.985-03', '125.578.468-12', 'Andreia Martins Silva', '5684', '425816-8', 'Bradesco');
+INSERT INTO debito(formadepagamento_id, formadepagamento_usuario, cpf, nome, agencia, conta, banco) VALUES(2, '464.566.956-15', '859.245.846-82', 'Leandra Leal', '4685', '485436-6', 'Santander');
+INSERT INTO debito(formadepagamento_id, formadepagamento_usuario, cpf, nome, agencia, conta, banco) VALUES(2, '558.987.523-12', '546.475.554-46', 'Patrícia Nishida Yamaki', '7645', '516684-0', 'Bradesco');
+INSERT INTO debito(formadepagamento_id, formadepagamento_usuario, cpf, nome, agencia, conta, banco) VALUES(2, '662.596.684-05', '166.685.696-02', 'Heitor Gonzaga Filho', '6525', '855254-8', 'Banco do Brasil');
+
+INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '398.356.665-01', 'ezequiel.apereira@yahoo.com.br', 'pereira5496');
+INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '225.265.985-03', 'deiamartinss@gmail.com', 'ms08martins');
+INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '464.566.956-15', 'le_leal2012@hotmail.com', 'leal1990');
+INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '558.987.523-12', 'yamaki.nishidapatricia@uol.com.br', 'yanigap08137');
+INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '662.596.684-05', 'h.gfilho@hotmail.com', 'brotas032filho');
+
+/*Cadastro de formas de pagamentos*/
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
+
+INSERT INTO periodopaga(codigo, periodo) VALUES ();
