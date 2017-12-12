@@ -54,6 +54,10 @@ public class MainScreen {
 	String [] listaIdioma = {"Ingles", "Portugues", "Espanhol"};
 	String [] listaLegenda = {"Nenhuma", "Portugues", "Ingles", "Espanhol"};
 	
+	// CREDENCIAS BD
+	private String usuario ="9896218";
+	private String senha ="a";
+	
 
 	// LISTA FILMES TESTE
 	String [] listaVideos = {"O Lobo de Wall Street", "Titanic", "Homem-Aranha"};
@@ -106,11 +110,11 @@ public class MainScreen {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             connection = DriverManager.getConnection(
                     "jdbc:oracle:thin:@grad.icmc.usp.br:15215:orcl",
-                    "9896218",	/* usuario */
-                    "a");		/* senha */
+                    usuario,
+                    senha);
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, "Erro: "+ex);
-			System.out.println(ex.getMessage());
+			JOptionPane.showMessageDialog(null, "Erro na conexao: "+ex.getMessage());
+			System.out.println("Erro na conexao: "+ex.getMessage());
 		}
 		/*CONEXAO*/
 		
@@ -125,9 +129,7 @@ public class MainScreen {
 		testeRelatorio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*
-				IntegrateSQL sqlIntegration = new IntegrateSQL();
-				Connection con = new Connection();
-				sqlIntegration.viewTable(con, "name"); //colocar nome aqui
+				Fazer a consulta solicitada e oferecer opcao de gerar PDF
  				*/
 			}
 		});
@@ -304,6 +306,29 @@ public class MainScreen {
 			public void actionPerformed(ActionEvent e) {
 				// pegar os dados dos campos e fazer a operacao de insercao de tupla
 				
+				try {
+					String sql = "INSERT INTO filme (video, sinopse, faixa_etaria, duracao, ano, idioma, legenda)"
+							+ " VALUES ("+", "+txtSinopse.getText()+", "+faixaEtJB.getActionCommand()+", "+txtDuracao.getText()
+							+", "+txtAno.getText()+", "+idiomaJB.getActionCommand()+", "+legendaJB.getActionCommand()+")";
+					
+					pstmt = connection.prepareStatement(sql);
+	                try{
+	                    pstmt.executeUpdate();
+	                    System.out.println("Dados inseridos");
+	                    System.out.println("");
+						JOptionPane.showMessageDialog(frame, "Dados inseridos!");
+	                    pstmt.close();
+	                } catch (SQLException ex) {
+						JOptionPane.showMessageDialog(frame, "Dados NAO inseridos! Erro: "+ex.getMessage());
+						System.out.println("ERRO: dados NAO inseridos!");
+						System.out.println(ex.getMessage());
+						System.out.println("Tente de novo.");
+	                }
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
+					System.out.println("Erro: "+ex.getMessage());
+				}
+				
 				updateTable();
 				cadastro.dispose();
 				btnCadastrar.setEnabled(true);
@@ -332,23 +357,25 @@ public class MainScreen {
 	public void updateTable() {
 		try {
 			/*SELECAO*/
-            String sql = "SELECT * FROM ALUNO";
+            String sql = "SELECT * FROM filme";
             stmt = connection.createStatement();
             rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                System.out.println(rs.getString("NUSP") + "-"
-                        + rs.getString("NOME") + "-"
-                        + rs.getString("IDADE") + "-"
-                        + rs.getString("DATANASC") + "-"
-                        + rs.getString("CIDADEORIGEM")
-                        );
-            }
 		    tabela.setModel(DbUtils.resultSetToTableModel(rs));
 		    barraRolagem.repaint();
 		    frame.repaint();
+            while (rs.next()) {
+                System.out.println(rs.getString("video") + "-"
+                        + rs.getString("sinopse") + "-"
+                        + rs.getString("faixa_etaria") + "-"
+                        + rs.getString("duracao") + "-"
+                        + rs.getString("ano") + "-"
+                        + rs.getString("idioma") + "-"
+                        + rs.getString("legenda")
+                        );
+            }
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(frame, "Erro: "+ex);
-			System.out.println(ex.getMessage());
+			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
+			System.out.println("Erro: "+ex.getMessage());
 		}
 	}
 
