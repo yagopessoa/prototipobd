@@ -489,12 +489,12 @@ public class MainScreen {
 	                try{
 	                    pstmt.executeUpdate();
 	    				cadastro.dispose();
-						JOptionPane.showMessageDialog(frame, "Dados inseridos!");
+						JOptionPane.showMessageDialog(frame, "Dados atualizados!");
 	                    pstmt.close();
 						updateTable();
 	                } catch (SQLException ex) {
 	    				cadastro.dispose();
-						JOptionPane.showMessageDialog(frame, "Dados NAO inseridos! Erro: "+ex.getMessage());
+						JOptionPane.showMessageDialog(frame, "Dados NAO foram atualizados! Erro: "+ex.getMessage());
 	                }
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
