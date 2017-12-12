@@ -396,3 +396,5 @@ CREATE TABLE gerencia (
 	CONSTRAINT FK_adulto FOREIGN KEY(usuario_adulto, apelido_adulto) REFERENCES adulto(usuario, apelido),
 	CONSTRAINT FK_infantil FOREIGN KEY(usuario_infantil, apelido_infantil) REFERENCES infantil(usuario, apelido)
 );
+
+COMMIT;

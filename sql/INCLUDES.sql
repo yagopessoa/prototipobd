@@ -275,9 +275,7 @@ INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) 
 
 /*Cadastro de formas de pagamentos*/
 INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
 
 INSERT INTO periodopaga(codigo, periodo) VALUES ();
+
+COMMIT;
