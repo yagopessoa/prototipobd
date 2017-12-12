@@ -1,34 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 import javax.swing.*;
-
-/*
-import com.sun.corba.se.pept.encoding.InputObject;
-import com.sun.corba.se.pept.encoding.OutputObject;
-import com.sun.corba.se.pept.protocol.MessageMediator;
-import com.sun.corba.se.pept.transport.Acceptor;
-import com.sun.corba.se.pept.transport.Connection;
-import com.sun.corba.se.pept.transport.ConnectionCache;
-import com.sun.corba.se.pept.transport.ContactInfo;
-import com.sun.corba.se.pept.transport.EventHandler;
-*/
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.*;
 
 public class MainScreen {
 
@@ -58,10 +31,6 @@ public class MainScreen {
 	// CREDENCIAS BD
 	private String usuario ="9896218";
 	private String senha ="a";
-	
-
-	// LISTA FILMES TESTE
-	String [] listaVideos = {"O Lobo de Wall Street", "Titanic", "Homem-Aranha"};
 	
 	// TABELA TESTE
 	String [] colunas = {"Titulo", "Sinopse", "Classificacao Etaria", "Duracao (min)", "Ano", "Idioma", "Legenda"};
@@ -184,7 +153,7 @@ public class MainScreen {
 					String codigo = tabela.getValueAt(tabela.getSelectedRow(), 0).toString();
 					btnAlterar.setEnabled(false);
 					atualizaTupla(codigo);
-				} catch (Exception ex) {}
+				} catch (Exception ex) { /* fazer mensasgem de "selecione uma linha da tabela" */ }
 			}
 		});
 		botoes.add(btnAlterar);
@@ -192,7 +161,39 @@ public class MainScreen {
 		btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// implementar delecao de tupla aqui
+				try {
+					String codigo = tabela.getValueAt(tabela.getSelectedRow(), 0).toString();
+					
+					try {
+						String select = "SELECT titulo FROM video WHERE (codigo = '" + codigo + "')";
+	                    System.out.println(select);
+	                    
+	                    stmt = connection.createStatement();
+	                    rs = stmt.executeQuery(select);
+	                    rs.next();
+	                    String titulo = rs.getString(1);
+	                    
+						String mensagem = "Deseja realmente excluir o video '"+titulo+"' do registro de filmes?";
+						int result = JOptionPane.showConfirmDialog((Component) null, mensagem,
+								"Excluir registro", JOptionPane.OK_CANCEL_OPTION);	/* OK=0, CANCEL=2 */
+						
+						if(result == 0) {
+							String sql = "DELETE FROM filme WHERE (video='"+codigo+"')";
+		                    System.out.println(sql);
+							pstmt = connection.prepareStatement(sql);							
+			                try{
+			                    pstmt.executeUpdate();
+								JOptionPane.showMessageDialog(frame, "Registro removido com sucesso!");
+			                    pstmt.close();
+								updateTable();
+			                } catch (SQLException ex) {
+								JOptionPane.showMessageDialog(frame, "Registro NAO foi removido! Erro: "+ex.getMessage());
+			                }
+						}
+					} catch (Exception exc) {
+						JOptionPane.showMessageDialog(frame, "Erro: "+exc.getMessage());
+					}
+				} catch (Exception ex) { /* fazer mensasgem de "selecione uma linha da tabela" */ }
 			}
 		});
 		botoes.add(btnExcluir);
