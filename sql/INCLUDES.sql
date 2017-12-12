@@ -212,7 +212,11 @@ INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) 
 INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('558.987.523-12', 'Ronaldo', 'Aventura', '8', '01/11/2017');
 INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('662.596.684-05', 'Natana', 'Infanto Juvenil', '4', '03/12/2017');
 
-INSERT INTO avaliafilme (perfilUsuario, perfilApelido, filme, nota, dataAvaliaFilme, opiniao) VALUES ();
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01 ', 'Maria Mãe', 1, 10, '12/06/2017');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01 ', 'Maria Filha', 1, 5, '10/06/2017');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 3, 9, '11/12/2017');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 4, 8, '10/12/2017');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 5, 7, '15/11/2017');
 
 INSERT INTO avaliaep () VALUES ();
 
