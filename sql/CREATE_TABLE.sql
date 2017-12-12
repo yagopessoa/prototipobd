@@ -263,7 +263,7 @@ CREATE TABLE filme (
 	ano NUMBER(4,0) NOT NULL,
 	/*thumb*/    /*pode ser nulo*/
 	idioma VARCHAR2(50) NOT NULL,
-	legenda VARCHAR2(50) NOT NULL,
+	legenda VARCHAR2(50),
 
 	CONSTRAINT PK_filme PRIMARY KEY(video),
 	CONSTRAINT FK_filme_video FOREIGN KEY(video) REFERENCES video,
