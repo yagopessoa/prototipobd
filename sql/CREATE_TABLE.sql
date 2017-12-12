@@ -57,7 +57,7 @@ CREATE TABLE video (
 	tipovideo VARCHAR2(20) NOT NULL,
 
 	CONSTRAINT PK_video PRIMARY KEY(codigo),
-	CONSTRAINT CK_tipovideo CHECK(tipovideo IN('filme', 'serie'))
+	CONSTRAINT CK_tipovideo CHECK(tipovideo IN('Filme', 'Série'))
 );
 
 CREATE TABLE atua (
@@ -67,7 +67,7 @@ CREATE TABLE atua (
 	CONSTRAINT PK_atua PRIMARY KEY(video, ator),
 	CONSTRAINT FK_video FOREIGN KEY(video) REFERENCES video,
 	CONSTRAINT FK_ator FOREIGN KEY(ator) REFERENCES elenco
-	/* como garantir que elenco.e_ator = true? */
+	/* como garantir que elenco.e_ator = true? k: é dever da aplicação*/
 );
 
 CREATE TABLE dirige (
@@ -77,7 +77,7 @@ CREATE TABLE dirige (
 	CONSTRAINT PK_dirige PRIMARY KEY(video, diretor),
 	CONSTRAINT FK_video_dirige FOREIGN KEY(video) REFERENCES video,
 	CONSTRAINT FK_diretor FOREIGN KEY(diretor) REFERENCES elenco
-	/* como garantir que elenco.e_diretor = true? */
+	/* como garantir que elenco.e_diretor = true? k: é dever da aplicação*/
 );
 
 CREATE TABLE tem (
@@ -152,7 +152,7 @@ CREATE TABLE cartao (
 	formadepagamento_usuario char(14) NOT NULL,
 	numero CHAR(16) NOT NULL,
 	bandeira VARCHAR2(20) NOT NULL,
-	validade CHAR(5) NOT NULL, /* validade: MM/AA */ /* como garantir que não está vencido? k: acho que é dever da aplicação*/
+	validade CHAR(5) NOT NULL, /* validade: MM/AA */ /* como garantir que não está vencido? k: é dever da aplicação*/
 	nome VARCHAR2(100) NOT NULL,
 	cod_seguranca NUMBER(3, 0),
 
@@ -256,7 +256,7 @@ CREATE TABLE filme (
 	faixa_etaria VARCHAR2(6) NOT NULL,
 	duracao VARCHAR2(6) NOT NULL,
 	ano NUMBER(4,0) NOT NULL,
-	/*thumb*/
+	/*thumb*/    /*pode ser nulo*/
 	idioma VARCHAR2(50) NOT NULL,
 	legenda VARCHAR2(50) NOT NULL,
 
@@ -292,7 +292,7 @@ CREATE TABLE episodio (
 	faixa_etaria VARCHAR2(6) NOT NULL,
 	duracao VARCHAR2(6) NOT NULL,
 	ano NUMBER(4,0) NOT NULL,
-	/*thumb*/
+	/*thumb*/ /*pode ser null*/
 	idioma VARCHAR2(50) NOT NULL,
 	legenda VARCHAR2(50) NOT NULL,
 
@@ -303,7 +303,7 @@ CREATE TABLE episodio (
 	CONSTRAINT CK_nrotemporada_episodio CHECK(nro_temporada >= 0),
 	CONSTRAINT CK_nroepisodios_episodio CHECK(nro_episodio >= 0),
 	CONSTRAINT CK_faixaetaria_episodio CHECK(faixa_etaria IN('Livre', '10+', '12+', '14+', '16+', '18+')),
-	CONSTRAINT CK_duracao_episodio CHECK(duracao LIKE '%min'),	/* não é melhor tratar só como numero mesmo? */
+	CONSTRAINT CK_duracao_episodio CHECK(duracao LIKE '%min'),
 	CONSTRAINT CK_ano_episodio CHECK(ano > 1900)
 );
 
@@ -331,7 +331,7 @@ CREATE TABLE assisteep (
 	episodio NUMBER(2,0) NOT NULL,
 	minutos_assistidos NUMBER(3, 0) NOT NULL,
 	data DATE NOT NULL,	/*cuidar da semântica, data>=1980 e deve corresponder ao dia em que foi assistido*/
-						/* solucao: talvez tenha uma forma de pegar a data do momento da insercao da tupla? */
+						/* solucao: pegar a data do momento da insercao da tupla */
 
 	CONSTRAINT PK_avaliaep_ PRIMARY KEY(usuario, apelido, episodio, temporada, serie),
 	CONSTRAINT CK_temporada CHECK(temporada >= 0),
@@ -356,29 +356,29 @@ CREATE TABLE assistefilme (
 CREATE TABLE infantil (
 	usuario char(14) NOT NULL,
 	apelido VARCHAR2(50) NOT NULL,
-	preferencia VARCHAR2(100),	/* genero preferido */
-	faixa_etaria VARCHAR2(6) NOT NULL,	/* coloca em qual classificacao se encontra ou a idade? k: coloca na classificação*/
+	genero_prefere VARCHAR2(100),		/* genero preferido */
+	faixa_etaria VARCHAR2(6) NOT NULL,	/* coloca em qual classificacao se encontra */
 
 	CONSTRAINT PK_infantil PRIMARY KEY(usuario, apelido),
 	CONSTRAINT FK_usuario_infantil FOREIGN KEY(usuario, apelido) REFERENCES tipoperfil,
-	CONSTRAINT CK_faixaetaria_infantil CHECK(faixa_etaria IN('Livre', '10', '12+', '14+', '16+', '18+')),
-	CONSTRAINT FK_preferencia_infantil FOREIGN KEY(preferencia) REFERENCES genero
+	CONSTRAINT FK_generoprefere_infantil FOREIGN KEY(genero_prefere) REFERENCES genero,
+	CONSTRAINT CK_faixaetaria_infantil CHECK(faixa_etaria IN('Livre', '10', '12+', '14+', '16+', '18+'))	
 );
 
 CREATE TABLE adulto (  
 	usuario char(14) NOT NULL,
 	apelido VARCHAR2(50) NOT NULL,
-	genero_prefere VARCHAR2(100),
-	qualidade VARCHAR2(5) NOT NULL,
-	legenda_prefere VARCHAR2(50) NOT NULL,	/* opcao preferencial de legenda */
+	genero_prefere VARCHAR2(100),			/* opcao preferencial de genero */
+	qualidade_prefere VARCHAR2(5),			/* opcao preferencial de qualidade */
+	legenda_prefere VARCHAR2(50),			/* opcao preferencial de legenda */
 	idioma_prefere VARCHAR2(50) NOT NULL,	/* opcao preferencial de idioma */
 
 	CONSTRAINT PK_adulto PRIMARY KEY(usuario, apelido),
 	CONSTRAINT FK_usuario_adulto FOREIGN KEY(usuario, apelido) REFERENCES tipoperfil,
-	CONSTRAINT CK_legenda_adulto FOREIGN KEY(legenda_prefere) REFERENCES linguas,
-	CONSTRAINT CK_idioma_adulto FOREIGN KEY(idioma_prefere) REFERENCES linguas,
-	CONSTRAINT CK_qualidade_adulto CHECK(qualidade IN ('360p', '480p', '720p', '1080p', 'HD', '4K')),
-	CONSTRAINT FK_preferencia_adulto FOREIGN KEY(genero_prefere) REFERENCES genero
+	CONSTRAINT FK_preferencia_adulto FOREIGN KEY(genero_prefere) REFERENCES genero,
+	CONSTRAINT FK_legenda_adulto FOREIGN KEY(legenda_prefere) REFERENCES linguas,
+	CONSTRAINT FK_idioma_adulto FOREIGN KEY(idioma_prefere) REFERENCES linguas,
+	CONSTRAINT CK_qualidadeprefere_adulto CHECK(qualidade_prefere IN ('360p', '480p', '720p', '1080p', 'HD', '4K'))	
 );
 
 CREATE TABLE gerencia (
