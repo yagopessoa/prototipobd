@@ -114,7 +114,6 @@ public class MainScreen {
                     senha);
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, "Erro na conexao: "+ex.getMessage());
-			System.out.println("Erro na conexao: "+ex.getMessage());
 		}
 		/*CONEXAO*/
 		
@@ -307,30 +306,34 @@ public class MainScreen {
 				// pegar os dados dos campos e fazer a operacao de insercao de tupla
 				
 				try {
+					String select = "SELECT codigo FROM video WHERE (titulo = \"" + videosJB.getSelectedItem().toString() + "\")";
+                    System.out.println(select);
+                    
+                    stmt = connection.createStatement();
+                    rs = stmt.executeQuery(select);
+
+					String cod_filme = rs.getString("codigo");
+					
 					String sql = "INSERT INTO filme (video, sinopse, faixa_etaria, duracao, ano, idioma, legenda)"
-							+ " VALUES ("+", "+txtSinopse.getText()+", "+faixaEtJB.getActionCommand()+", "+txtDuracao.getText()
-							+", "+txtAno.getText()+", "+idiomaJB.getActionCommand()+", "+legendaJB.getActionCommand()+")";
+							+ " VALUES ("+cod_filme+", "+txtSinopse.getText()+", "+faixaEtJB.getSelectedItem().toString()+", "+txtDuracao.getText()
+							+", "+txtAno.getText()+", "+idiomaJB.getSelectedItem().toString()+", "+legendaJB.getSelectedItem().toString()+")";
+                    System.out.println(sql);
 					
 					pstmt = connection.prepareStatement(sql);
 	                try{
 	                    pstmt.executeUpdate();
-	                    System.out.println("Dados inseridos");
-	                    System.out.println("");
+	    				cadastro.dispose();
 						JOptionPane.showMessageDialog(frame, "Dados inseridos!");
 	                    pstmt.close();
+						updateTable();
 	                } catch (SQLException ex) {
+	    				cadastro.dispose();
 						JOptionPane.showMessageDialog(frame, "Dados NAO inseridos! Erro: "+ex.getMessage());
-						System.out.println("ERRO: dados NAO inseridos!");
-						System.out.println(ex.getMessage());
-						System.out.println("Tente de novo.");
 	                }
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
-					System.out.println("Erro: "+ex.getMessage());
 				}
 				
-				updateTable();
-				cadastro.dispose();
 				btnCadastrar.setEnabled(true);
 				frame.setVisible(true);
 			}
@@ -350,7 +353,7 @@ public class MainScreen {
 		cadastro.add(campos);
 		cadastro.add(botoes);
 		cadastro.pack();
-		cadastro.setLocationRelativeTo(null);
+		cadastro.setLocationRelativeTo(frame);
 		cadastro.setVisible(true);
 	}
 	
@@ -375,7 +378,6 @@ public class MainScreen {
             }
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
-			System.out.println("Erro: "+ex.getMessage());
 		}
 	}
 
