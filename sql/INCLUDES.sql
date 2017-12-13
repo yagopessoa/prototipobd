@@ -8,19 +8,19 @@ Yago Rafael Pessoa     			- 9896218
 */
 
 
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (1, 'Star Wars Epis√≥dio I: A Amea√ßa Fantasma', 'Filme');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (2, 'Star Wars Epis√≥dio II: Ataque dos Clones', 'Filme');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (3, 'Star Wars Epis√≥dio III: A Vingan√ßa dos Sith', 'Filme');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (4, 'Star Wars Epis√≥dio IV: Uma Nova Esperan√ßa', 'Filme');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (5, 'Star Wars Epis√≥dio V: O Imp√©rio Contra Ataca', 'Filme');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (6, 'Star Wars Epis√≥dio VI: O Retorno de Jedi', 'Filme');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (7, 'Star Wars Epis√≥dio VII: O Despertar da For√ßa', 'Filme');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (8, 'Rogue One: Uma Hist√≥ria Star Wars', 'Filme');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (9, 'Friends', 'S√©rie'); 
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (10, 'Once Upon a Time', 'S√©rie');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (11, 'Big Mouth', 'S√©rie');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (1, 'Star Wars EpisÛdio I: A Amea√ßa Fantasma', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (2, 'Star Wars EpisÛdio II: Ataque dos Clones', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (3, 'Star Wars EpisÛdio III: A Vingan√ßa dos Sith', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (4, 'Star Wars EpisÛdio IV: Uma Nova EsperanÁa', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (5, 'Star Wars EpisÛdio V: O Imp√©rio Contra Ataca', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (6, 'Star Wars EpisÛdio VI: O Retorno de Jedi', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (7, 'Star Wars EpisÛdio VII: O Despertar da ForÁa', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (8, 'Rogue One: Uma HistÛria Star Wars', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (9, 'Friends', 'SÈrie'); 
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (10, 'Once Upon a Time', 'SÈrie');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (11, 'Big Mouth', 'SÈrie');
 INSERT INTO video (codigo, titulo, tipovideo) VALUES (12, 'Suits', 'S√©rie');
-INSERT INTO video (codigo, titulo, tipovideo) VALUES (13, 'RuPauls Drag Race', 'S√©rie');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (13, 'RuPauls Drag Race', 'SÈrie');
 INSERT INTO video (codigo, titulo, tipovideo) VALUES (14, 'Matrix', 'Filme');
 INSERT INTO video (codigo, titulo, tipovideo) VALUES (15, 'Titanic', 'Filme');
 INSERT INTO video (codigo, titulo, tipovideo) VALUES (16, 'O Rei Le„o', 'Filme');
@@ -236,8 +236,8 @@ INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avali
 INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 5, 7, '15/11/2017','Adorei! Quero fazer uma maratona!');
 
 INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('558.987.523-12', 'Ronaldo', 1, 1, 9, 10, '08/08/2017', 'O Ross √© o melhor');
-INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('558.987.523-12', 'Ronaldo', 1, 2, 9, 9, '07/09/2017', 'Ross √© muito lerdo! S√≥ minha m√£e pra gostar dele');
-INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Natana', 1, 3, 9, 10, '12/10/2017', 'S√≥ eu que choro de rir das piadas do Chandler? hahahaha');
+INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('558.987.523-12', 'Ronaldo', 1, 2, 9, 9, '07/09/2017', 'Ross √© muito lerdo! SÛ minha m√£e pra gostar dele');
+INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Natana', 1, 3, 9, 10, '12/10/2017', 'SÛ eu que choro de rir das piadas do Chandler? hahahaha');
 INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Natana', 1, 1, 9, 9, '04/11/2017', 'Oh the fuf');
 INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Anatan', 1, 2, 9, 10, '29/11/2017', 'Phoebe √© a melhor personagem de todas! Haha');
 
