@@ -234,22 +234,30 @@ INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie
 INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Natana', 1, 1, 9, 9, '04/11/2017', 'Oh the fuf');
 INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Anatan', 1, 2, 9, 10, '29/11/2017', 'Phoebe é a melhor personagem de todas! Haha');
 
+INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('398.356.665-01', 'Maria Mãe', '558.987.523-12', 'Ronaldinho', 1, 'Cara, veja esse filme');
+INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('398.356.665-01', 'Maria Filha', '662.596.684-05', 'Natana', 4);
+INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('225.265.985-03', 'José', '662.596.684-05', 'Anatan', 2, 'Man, mto bom esse filme');
+INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('225.265.985-03', 'Zezinho', '398.356.665-01', 'Maria Mãe', 2);
+INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('464.566.956-15', 'Carla', '225.265.985-03', 'José', 3, 'Quando puder asssista, serio!!!');
+INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('558.987.523-12', 'Ronaldo', '225.265.985-03', 'Zezinho', 5, 'Esse é mais ou menos, veja se quiser');
 
+INSERT INTO dispositivo (codigo, nome, versao_so) VALUES (1, 'Android', 'Oreo');
+INSERT INTO dispositivo (codigo, nome, versao_so) VALUES (2, 'iOS', '11');
+INSERT INTO dispositivo (codigo, nome, versao_so) VALUES (3, 'WindowsPhone', 'win10');
+INSERT INTO dispositivo (codigo, nome, versao_so) VALUES (4, 'BlackBerry OS', '4.1');
+INSERT INTO dispositivo (codigo, nome, versao_so) VALUES (5, 'Symbian', '2');
 
-INSERT INTO recomenda(usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ();
+INSERT INTO acesso (dispositivo, usuario, horario, ip) VALUES (1, '398.356.665-01', '21:00:08', '17718010278');
+INSERT INTO acesso (dispositivo, usuario, horario, ip) VALUES (2, '398.356.665-01', '08:45:44', '18818010277');
+INSERT INTO acesso (dispositivo, usuario, horario, ip) VALUES (3, '225.265.985-03', '19:00:28', '17418010858');
+INSERT INTO acesso (dispositivo, usuario, horario, ip) VALUES (4, '225.265.985-03', '08:00:01', '24818010270');
+INSERT INTO acesso (dispositivo, usuario, horario, ip) VALUES (5, '225.265.985-03', '11:30:47', '31578910271');
 
-INSERT INTO acesso(dispositivo, usuario, horario, ip) VALUES ();
-
-INSERT INTO dispositivo(codigo, nome, versao_so) VALUES ();
-
-
-
-
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('398.356.665-01', 'Básico');
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('225.265.985-03', 'Familiar');
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('464.566.956-15', 'Master');
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('558.987.523-12', 'Básico');
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('662.596.684-05', 'Master');
+INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('398.356.665-01', 'Básico');
+INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('225.265.985-03', 'Familiar');
+INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('464.566.956-15', 'Master');
+INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('558.987.523-12', 'Básico');
+INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('662.596.684-05', 'Master');
 
 INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (1, '398.356.665-01', 'Cartao');
 INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (2, '398.356.665-01', 'Debito');
