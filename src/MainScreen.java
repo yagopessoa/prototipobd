@@ -1,34 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 import javax.swing.*;
-
-/*
-import com.sun.corba.se.pept.encoding.InputObject;
-import com.sun.corba.se.pept.encoding.OutputObject;
-import com.sun.corba.se.pept.protocol.MessageMediator;
-import com.sun.corba.se.pept.transport.Acceptor;
-import com.sun.corba.se.pept.transport.Connection;
-import com.sun.corba.se.pept.transport.ConnectionCache;
-import com.sun.corba.se.pept.transport.ContactInfo;
-import com.sun.corba.se.pept.transport.EventHandler;
-*/
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.*;
 
 public class MainScreen {
 
@@ -52,16 +25,10 @@ public class MainScreen {
 			+ " para Streaming de Video\n";
 	
 	String [] listaFaixaEt = {"Livre", "10+", "12+", "14+", "16+", "18+"};
-	String [] listaIdioma = {"English-USA", "Português-Brasil", "Español", "Deutsch", "Français"};
-	String [] listaLegenda = {"Português-Brasil", "Português-Portugal", "Español", "Français", "Deutsch", "English-USA", "English-UK"};
 	
 	// CREDENCIAS BD
 	private String usuario ="9896218";
 	private String senha ="a";
-	
-
-	// LISTA FILMES TESTE
-	String [] listaVideos = {"O Lobo de Wall Street", "Titanic", "Homem-Aranha"};
 	
 	// TABELA TESTE
 	String [] colunas = {"Titulo", "Sinopse", "Classificacao Etaria", "Duracao (min)", "Ano", "Idioma", "Legenda"};
@@ -181,10 +148,10 @@ public class MainScreen {
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String codigo = tabela.getValueAt(tabela.getSelectedRow(), 0).toString();
+					String codigo = tabela.getValueAt(tabela.getSelectedRow(), 1).toString();
 					btnAlterar.setEnabled(false);
 					atualizaTupla(codigo);
-				} catch (Exception ex) {}
+				} catch (Exception ex) { /* fazer mensasgem de "selecione uma linha da tabela" */ }
 			}
 		});
 		botoes.add(btnAlterar);
@@ -192,7 +159,39 @@ public class MainScreen {
 		btnExcluir = new JButton("Excluir");
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// implementar delecao de tupla aqui
+				try {
+					String codigo = tabela.getValueAt(tabela.getSelectedRow(), 1).toString();
+					
+					try {
+						String select = "SELECT titulo FROM video WHERE (codigo = '" + codigo + "')";
+	                    System.out.println(select);
+	                    
+	                    stmt = connection.createStatement();
+	                    rs = stmt.executeQuery(select);
+	                    rs.next();
+	                    String titulo = rs.getString(1);
+	                    
+						String mensagem = "Deseja realmente excluir o video '"+titulo+"' do registro de filmes?";
+						int result = JOptionPane.showConfirmDialog((Component) null, mensagem,
+								"Excluir registro", JOptionPane.OK_CANCEL_OPTION);	/* OK=0, CANCEL=2 */
+						
+						if(result == 0) {
+							String sql = "DELETE FROM filme WHERE (video='"+codigo+"')";
+		                    System.out.println(sql);
+							pstmt = connection.prepareStatement(sql);							
+			                try{
+			                    pstmt.executeUpdate();
+								JOptionPane.showMessageDialog(frame, "Registro removido com sucesso!");
+			                    pstmt.close();
+								updateTable();
+			                } catch (SQLException ex) {
+								JOptionPane.showMessageDialog(frame, "Registro NAO foi removido! Erro: "+ex.getMessage());
+			                }
+						}
+					} catch (Exception exc) {
+						JOptionPane.showMessageDialog(frame, "Erro: "+exc.getMessage());
+					}
+				} catch (Exception ex) { /* fazer mensasgem de "selecione uma linha da tabela" */ }
 			}
 		});
 		botoes.add(btnExcluir);
@@ -251,7 +250,6 @@ public class MainScreen {
 		campos.add(videosLabel);
 		
 		// exibir codigo(PENDENTE) + nome do video(OK)
-		// trazer videos do tipo "filme"(OK) e que nao tenha cadastro na tabela filmes(PENDENTE)
 		JComboBox<String> videosJB = new JComboBox<String>();
 		try {
 			String select = "SELECT titulo FROM video WHERE (tipoVideo = 'Filme' AND codigo NOT IN (SELECT video FROM filme))";
@@ -260,10 +258,10 @@ public class MainScreen {
             while(rs.next()) {
         		videosJB.addItem(rs.getString(1));
             }
-    		campos.add(videosJB);
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
 		}	
+		campos.add(videosJB);
 		
 		JLabel sinopseLabel = new JLabel("Sinopse:");
 		sinopseLabel.setFont(new Font("Arial", 1, 14));
@@ -300,14 +298,35 @@ public class MainScreen {
 		idiomaLabel.setFont(new Font("Arial", 1, 14));
 		campos.add(idiomaLabel);
 		
-		final JComboBox<String> idiomaJB = new JComboBox<>(listaIdioma);
+		JComboBox<String> idiomaJB = new JComboBox<String>();
+		try {
+			String select = "SELECT lingua FROM linguas";
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(select);
+            while(rs.next()) {
+            	idiomaJB.addItem(rs.getString(1));
+            }
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
+		}
 		campos.add(idiomaJB);
 		
 		JLabel legendaLabel = new JLabel("Legenda:");
 		legendaLabel.setFont(new Font("Arial", 1, 14));
 		campos.add(legendaLabel);
 		
-		final JComboBox<String> legendaJB = new JComboBox<>(listaLegenda);
+		JComboBox<String> legendaJB = new JComboBox<String>();
+		legendaJB.addItem("Nenhuma");
+		try {
+			String select = "SELECT lingua FROM linguas";
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(select);
+            while(rs.next()) {
+            	legendaJB.addItem(rs.getString(1));
+            }
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
+		}
 		campos.add(legendaJB);
 		
 		
@@ -327,11 +346,18 @@ public class MainScreen {
                     rs.next();
 					String cod_filme = rs.getString(1);
                     System.out.println(cod_filme);
-					
-					String sql = "INSERT INTO filme (video, sinopse, faixa_etaria, duracao, ano, idioma, legenda)"
-							+ " VALUES ("+cod_filme+", '"+txtSinopse.getText()+"', '"+faixaEtJB.getSelectedItem().toString()+"', '"+txtDuracao.getText()
-							+"min', "+txtAno.getText()+", '"+idiomaJB.getSelectedItem().toString()+"', '"+legendaJB.getSelectedItem().toString()+"')";
-                    System.out.println(sql);
+                    
+                    String sql;
+                    if(legendaJB.getSelectedItem().toString().equals("Nenhuma")) {
+                    	sql = "INSERT INTO filme (video, sinopse, faixa_etaria, duracao, ano, idioma)"
+    							+ " VALUES ("+cod_filme+", '"+txtSinopse.getText()+"', '"+faixaEtJB.getSelectedItem().toString()+"', '"+txtDuracao.getText()
+    							+"min', "+txtAno.getText()+", '"+idiomaJB.getSelectedItem().toString()+"')";
+                    }else {
+                    	sql = "INSERT INTO filme (video, sinopse, faixa_etaria, duracao, ano, idioma, legenda)"
+    							+ " VALUES ("+cod_filme+", '"+txtSinopse.getText()+"', '"+faixaEtJB.getSelectedItem().toString()+"', '"+txtDuracao.getText()
+    							+"min', "+txtAno.getText()+", '"+idiomaJB.getSelectedItem().toString()+"', '"+legendaJB.getSelectedItem().toString()+"')";
+                    }
+					System.out.println(sql);
 					
 					pstmt = connection.prepareStatement(sql);
 	                try{
@@ -400,7 +426,7 @@ public class MainScreen {
        		titulo = rs.getString("titulo");
        		
     		JLabel tituloLabel = new JLabel(titulo);
-    		videosLabel.setFont(new Font("Arial", 1, 14));
+    		tituloLabel.setFont(new Font("Arial", 1, 14));
     		campos.add(tituloLabel);
 		} catch (Exception ex) {
 			erro = true;
@@ -443,14 +469,35 @@ public class MainScreen {
 		idiomaLabel.setFont(new Font("Arial", 1, 14));
 		campos.add(idiomaLabel);
 		
-		final JComboBox<String> idiomaJB = new JComboBox<>(listaIdioma);
+		JComboBox<String> idiomaJB = new JComboBox<String>();
+		try {
+			String select = "SELECT lingua FROM linguas";
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(select);
+            while(rs.next()) {
+            	idiomaJB.addItem(rs.getString(1));
+            }
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
+		}
 		campos.add(idiomaJB);
 		
 		JLabel legendaLabel = new JLabel("Legenda:");
 		legendaLabel.setFont(new Font("Arial", 1, 14));
 		campos.add(legendaLabel);
 		
-		final JComboBox<String> legendaJB = new JComboBox<>(listaLegenda);
+		JComboBox<String> legendaJB = new JComboBox<String>();
+		legendaJB.addItem("Nenhuma");
+		try {
+			String select = "SELECT lingua FROM linguas";
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(select);
+            while(rs.next()) {
+            	legendaJB.addItem(rs.getString(1));
+            }
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
+		}
 		campos.add(legendaJB);
 		
 		try {
@@ -480,9 +527,16 @@ public class MainScreen {
 		confirma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					String sql = "UPDATE filme SET sinopse='"+txtSinopse.getText()+"', faixa_etaria='"+faixaEtJB.getSelectedItem().toString()+"', "
-							+ "duracao='"+txtDuracao.getText()+"min', ano='"+txtAno.getText()+"', idioma='"+idiomaJB.getSelectedItem().toString()+"', "
-							+ "legenda='"+legendaJB.getSelectedItem().toString()+"' WHERE video='"+codigo+"'";
+					String sql;
+                    if(legendaJB.getSelectedItem().toString().equals("Nenhuma")) {
+                    	sql = "UPDATE filme SET sinopse='"+txtSinopse.getText()+"', faixa_etaria='"+faixaEtJB.getSelectedItem().toString()+"', "
+    							+ "duracao='"+txtDuracao.getText()+"min', ano='"+txtAno.getText()+"', idioma='"
+                    			+idiomaJB.getSelectedItem().toString()+"', legenda=null WHERE video='"+codigo+"'";
+                    }else {
+                    	sql = "UPDATE filme SET sinopse='"+txtSinopse.getText()+"', faixa_etaria='"+faixaEtJB.getSelectedItem().toString()+"', "
+    							+ "duracao='"+txtDuracao.getText()+"min', ano='"+txtAno.getText()+"', idioma='"+idiomaJB.getSelectedItem().toString()+"', "
+    							+ "legenda='"+legendaJB.getSelectedItem().toString()+"' WHERE video='"+codigo+"'";
+                    }
                     System.out.println(sql);
 
 					pstmt = connection.prepareStatement(sql);
@@ -528,7 +582,8 @@ public class MainScreen {
             String sql = "SELECT * FROM filme";
             stmt = connection.createStatement();
             rs = stmt.executeQuery(sql);
-		    tabela.setModel(DbUtils.resultSetToTableModel(rs));
+        	
+		    tabela.setModel(DbUtils.resultSetToTableModel(rs, connection));
 		    barraRolagem.repaint();
 		    frame.repaint();
 		} catch (Exception ex) {
