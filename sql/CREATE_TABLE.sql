@@ -43,7 +43,7 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE seleciona (
-	usuario char(14) NOT NULL,
+	usuario CHAR(14) NOT NULL,
 	planodeassinatura VARCHAR2(100) NOT NULL,
 
 	CONSTRAINT PK_seleciona PRIMARY KEY(usuario),
@@ -89,7 +89,6 @@ CREATE TABLE tem (
 	CONSTRAINT FK_video_tem FOREIGN KEY(video) REFERENCES video
 );
 
-
 CREATE TABLE linguas (	/*### ALTERAR NOS MODELOS #########################################*/
 	lingua VARCHAR2(50) NOT NULL,
 
@@ -102,10 +101,9 @@ CREATE TABLE cadastropagamento (
 	tipopagamento VARCHAR2(10) NOT NULL,
 
 	CONSTRAINT PK_cadastropagamento PRIMARY KEY(id_opcao, usuario),
-	CONSTRAINT FK_usuario_cadastropagamento FOREIGN KEY(usuario) REFERENCES usuario
+	CONSTRAINT FK_usuario_cadastropagamento FOREIGN KEY(usuario) REFERENCES usuario,
 	CONSTRAINT CK_tipopagamento CHECK(tipopagamento IN('Cartao', 'Paypal', 'Debito'))
 );
-
 
 CREATE TABLE dispositivo (
 	codigo NUMBER(4,0) NOT NULL,
@@ -152,7 +150,6 @@ CREATE TABLE cartao (
 	CONSTRAINT PK_cartao2 PRIMARY KEY(formadepagamento_id, formadepagamento_usuario),
 	CONSTRAINT FK_cartao2 FOREIGN KEY(formadepagamento_id, formadepagamento_usuario) REFERENCES cadastropagamento(id_opcao, usuario)
 );
-
 
 CREATE TABLE paypal (
 	formadepagamento_id NUMBER(2,0) NOT NULL,
@@ -257,7 +254,7 @@ CREATE TABLE temporada (
 
 CREATE TABLE filme (
 	video NUMBER(4,0) NOT NULL,
-	sinopse VARCHAR2(200) NOT NULL,
+	sinopse VARCHAR2(400) NOT NULL,
 	faixa_etaria VARCHAR2(6) NOT NULL,
 	duracao VARCHAR2(6) NOT NULL,
 	ano NUMBER(4,0) NOT NULL,
@@ -345,7 +342,6 @@ CREATE TABLE assisteep (
 	CONSTRAINT FK_episodio_assisteep FOREIGN KEY(episodio, temporada, serie) REFERENCES episodio(nro_episodio, nro_temporada, serie)
 );
 
-
 CREATE TABLE assistefilme (
 	usuario char(14) NOT NULL,
 	perfil VARCHAR2(50) NOT NULL,
@@ -367,7 +363,7 @@ CREATE TABLE infantil (
 	CONSTRAINT PK_infantil PRIMARY KEY(usuario, apelido),
 	CONSTRAINT FK_usuario_infantil FOREIGN KEY(usuario, apelido) REFERENCES tipoperfil,
 	CONSTRAINT FK_generoprefere_infantil FOREIGN KEY(genero_prefere) REFERENCES genero,
-	CONSTRAINT CK_faixaetaria_infantil CHECK(faixa_etaria IN('Livre', '10', '12+', '14+', '16+', '18+'))	
+	CONSTRAINT CK_faixaetaria_infantil CHECK(faixa_etaria IN('Livre', '10+', '12+', '14+', '16+', '18+'))	
 );
 
 CREATE TABLE adulto (  

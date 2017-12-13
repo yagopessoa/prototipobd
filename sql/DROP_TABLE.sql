@@ -31,3 +31,5 @@ DROP TABLE usuario;
 DROP TABLE genero;
 DROP TABLE planodeassinatura;
 DROP TABLE elenco;
+
+COMMIT;

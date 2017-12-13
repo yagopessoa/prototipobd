@@ -8,32 +8,33 @@ Yago Rafael Pessoa     			- 9896218
 */
 
 
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (1, 'Star Wars Episódio I: A Ameaça Fantasma', 'Filme');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (2, 'Star Wars Episódio II: Ataque dos Clones', 'Filme');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (3, 'Star Wars Episódio III: A Vingança dos Sith', 'Filme');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (4, 'Star Wars Episódio IV: Uma Nova Esperança', 'Filme');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (5, 'Star Wars Episódio V: O Império Contra Ataca', 'Filme');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (6, 'Star Wars Episódio VI: O Retorno de Jedi', 'Filme');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (7, 'Star Wars Episódio VII: O Despertar da Força', 'Filme');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (8, 'Rogue One: Uma História Star Wars', 'Filme');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (9, 'Friends', 'Série'); 
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (10, 'Once Upon a Time', 'Série');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (11, 'Big Mouth', 'Série');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (12, 'Suits', 'Série');
-INSERT INTO video (cod_video, titulo, tipoVideo) VALUES (13, 'RuPauls Drag Race', 'Série');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (1, 'Star Wars Episódio I: A Ameaça Fantasma', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (2, 'Star Wars Episódio II: Ataque dos Clones', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (3, 'Star Wars Episódio III: A Vingança dos Sith', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (4, 'Star Wars Episódio IV: Uma Nova Esperança', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (5, 'Star Wars Episódio V: O Império Contra Ataca', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (6, 'Star Wars Episódio VI: O Retorno de Jedi', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (7, 'Star Wars Episódio VII: O Despertar da Força', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (8, 'Rogue One: Uma História Star Wars', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (9, 'Friends', 'Série'); 
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (10, 'Once Upon a Time', 'Série');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (11, 'Big Mouth', 'Série');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (12, 'Suits', 'Série');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (13, 'RuPauls Drag Race', 'Série');
 
-INSERT INTO genero (nomeGenero) VALUES ('Ficção Científica');
-INSERT INTO genero (nomeGenero) VALUES ('Infanto Juvenil');
-INSERT INTO genero (nomeGenero) VALUES ('Aventura');
-INSERT INTO genero (nomeGenero) VALUES ('Terror');
-INSERT INTO genero (nomeGenero) VALUES ('Comédia');
-INSERT INTO genero (nomeGenero) VALUES ('Drama');
-INSERT INTO genero (nomeGenero) VALUES ('Suspense');
-INSERT INTO genero (nomeGenero) VALUES ('Documentário');
-INSERT INTO genero (nomeGenero) VALUES ('Ação');
-INSERT INTO genero (nomeGenero) VALUES ('Animação');
-INSERT INTO genero (nomeGenero) VALUES ('LGBT');
-INSERT INTO genero (nomeGenero) VALUES ('Estrangeiro');
+INSERT INTO genero VALUES ('Ficção Científica');
+INSERT INTO genero VALUES ('Infanto Juvenil');
+INSERT INTO genero VALUES ('Aventura');
+INSERT INTO genero VALUES ('Terror');
+INSERT INTO genero VALUES ('Comédia');
+INSERT INTO genero VALUES ('Drama');
+INSERT INTO genero VALUES ('Suspense');
+INSERT INTO genero VALUES ('Documentário');
+INSERT INTO genero VALUES ('Ação');
+INSERT INTO genero VALUES ('Animação');
+INSERT INTO genero VALUES ('LGBT');
+INSERT INTO genero VALUES ('Estrangeiro');
+INSERT INTO genero VALUES ('Romance');
 
 INSERT INTO linguas VALUES ('Português-Brasil');
 INSERT INTO linguas VALUES ('Português-Portugal');
@@ -75,11 +76,11 @@ INSERT INTO dirige (video, diretor) VALUES (3,4);
 INSERT INTO dirige (video, diretor) VALUES (4,5);
 INSERT INTO dirige (video, diretor) VALUES (5,1);
 
-INSERT INTO planodeassinatura VALUES ('Básico', '25,00', 'Assista em 1 tela, com 100 diferentes opções de filmes e séries por mês');
-INSERT INTO planodeassinatura VALUES ('Padrão', '30,00', 'Assista em 1 tela, com 200 diferentes opções de filmes e séries por mês');
-INSERT INTO planodeassinatura VALUES ('Familiar', '40,00', 'Assista em 3 telas, com 200 diferentes opções de filmes e séries por mês');
-INSERT INTO planodeassinatura VALUES ('Master', '50,00', 'Assista em quantas telas quiser, com 300 diferentes opções de filmes e séries por mês');
-INSERT INTO planodeassinatura VALUES ('Premium', '60,00', 'Assista em quantas telas quiser, quantos filmes e séries quiser');
+INSERT INTO planodeassinatura VALUES ('Básico', 25.00, 'Assista em 1 tela, com 100 diferentes opções de filmes e séries por mês');
+INSERT INTO planodeassinatura VALUES ('Padrão', 30.00, 'Assista em 1 tela, com 200 diferentes opções de filmes e séries por mês');
+INSERT INTO planodeassinatura VALUES ('Familiar', 40.00, 'Assista em 3 telas, com 200 diferentes opções de filmes e séries por mês');
+INSERT INTO planodeassinatura VALUES ('Master', 50.00, 'Assista em quantas telas quiser, com 300 diferentes opções de filmes e séries por mês');
+INSERT INTO planodeassinatura VALUES ('Premium', 60.00, 'Assista em quantas telas quiser, quantos filmes e séries quiser');
 
 INSERT INTO usuario VALUES ('398.356.665-01', 'Maria da Silva', 'ms@gmail.com', '12/05/1998');
 INSERT INTO usuario VALUES ('225.265.985-03', 'José Alfredo Costa', 'jac@gmail.com', '01/10/1960');
@@ -87,34 +88,34 @@ INSERT INTO usuario VALUES ('464.566.956-15', 'Carla Nobrega', 'cn@gmail.com', '
 INSERT INTO usuario VALUES ('558.987.523-12', 'Ronaldo Ferreira', 'rf@gmail.com', '05/09/1995');
 INSERT INTO usuario VALUES ('662.596.684-05', 'Natana Aguiar', 'na@gmail.com', '29/01/1986');
 
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('398.356.665-01', 'Básico');
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('225.265.985-03', 'Familiar');
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('464.566.956-15', 'Master');
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('558.987.523-12', 'Básico');
-INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('662.596.684-05', 'Master');
+INSERT INTO seleciona (usuario, planodeassinatura) VALUES ('662.596.684-05', 'Básico');
+INSERT INTO seleciona (usuario, planodeassinatura) VALUES ('558.987.523-12', 'Padrão');
+INSERT INTO seleciona (usuario, planodeassinatura) VALUES ('464.566.956-15', 'Familiar');
+INSERT INTO seleciona (usuario, planodeassinatura) VALUES ('225.265.985-03', 'Master');
+INSERT INTO seleciona (usuario, planodeassinatura) VALUES ('398.356.665-01', 'Premium');
  
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('398.356.665-01', 'Maria Mãe', 'Adulto');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('398.356.665-01', 'Maria Filha', 'Infantil');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('225.265.985-03', 'José', 'Adulto');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('225.265.985-03', 'Zezinho', 'Infantil');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('464.566.956-15', 'Carla', 'Adulto');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('464.566.956-15', 'Carla Segunda', 'Infantil');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('558.987.523-12', 'Ronaldo', 'Adulto');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('558.987.523-12', 'Ronaldinho', 'Infantil');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('662.596.684-05', 'Natana', 'Adulto');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('662.596.684-05', 'Anatan', 'Infantil');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('398.356.665-01', 'Maria Mãe', 'Adulto');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('398.356.665-01', 'Maria Filha', 'Infantil');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('225.265.985-03', 'José', 'Adulto');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('225.265.985-03', 'Zezinho', 'Infantil');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('464.566.956-15', 'Carla', 'Adulto');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('464.566.956-15', 'Carla Segunda', 'Infantil');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('558.987.523-12', 'Ronaldo', 'Adulto');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('558.987.523-12', 'Ronaldinho', 'Infantil');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('662.596.684-05', 'Natana', 'Adulto');
+INSERT INTO tipoperfil (usuario, apelido, tipoperfil) VALUES ('662.596.684-05', 'Anatan', 'Infantil');
 
 INSERT INTO adulto (usuario, apelido, genero_prefere, qualidade_prefere, legenda_prefere, idioma_prefere) VALUES ('464.566.956-15', 'Carla', 'Drama', '4K', 'Português-Brasil', 'English-UK');
 INSERT INTO adulto (usuario, apelido, genero_prefere, qualidade_prefere, legenda_prefere, idioma_prefere) VALUES ('558.987.523-12', 'Ronaldo', 'Ação', '720p', 'Português-Brasil', 'Français');
 INSERT INTO adulto (usuario, apelido, genero_prefere, qualidade_prefere, legenda_prefere, idioma_prefere) VALUES ('225.265.985-03', 'José', 'Animação', 'HD', 'English-UK', 'Deutsch');
-INSERT INTO adulto (usuario, apelido, genero_prefere, qualidade_prefere, idioma_prefere) VALUES ('398.356.665-01 ', 'Maria Mãe', 'Romance', '1080p', 'Português-Brasil');
+INSERT INTO adulto (usuario, apelido, genero_prefere, qualidade_prefere, idioma_prefere) VALUES ('398.356.665-01', 'Maria Mãe', 'Romance', '1080p', 'Português-Brasil');
 INSERT INTO adulto (usuario, apelido, genero_prefere, qualidade_prefere, idioma_prefere) VALUES ('662.596.684-05', 'Natana', 'LGBT', '4K', 'Español');
 
-INSERT INTO infantil (usuario, apelido, genero_prefere, faixaEtaria) VALUES ('398.356.665-01', 'Maria Filha', '12+');
-INSERT INTO infantil (usuario, apelido, genero_prefere, faixaEtaria) VALUES ('225.265.985-03', 'Zezinho', '10+');
-INSERT INTO infantil (usuario, apelido, genero_prefere, faixaEtaria) VALUES ('464.566.956-15', 'Carla Segunda', 'Livre');
-INSERT INTO infantil (usuario, apelido, genero_prefere, faixaEtaria) VALUES ('558.987.523-12', 'Ronaldinho', '14+');
-INSERT INTO infantil (usuario, apelido, genero_prefere, faixaEtaria) VALUES ('662.596.684-05', 'Anatan', 'Livre');
+INSERT INTO infantil (usuario, apelido, genero_prefere, faixa_etaria) VALUES ('398.356.665-01', 'Maria Filha', 'Aventura', '12+');
+INSERT INTO infantil (usuario, apelido, faixa_etaria) VALUES ('225.265.985-03', 'Zezinho', '10+');
+INSERT INTO infantil (usuario, apelido, genero_prefere, faixa_etaria) VALUES ('464.566.956-15', 'Carla Segunda', 'Ação', 'Livre');
+INSERT INTO infantil (usuario, apelido, genero_prefere, faixa_etaria) VALUES ('558.987.523-12', 'Ronaldinho', 'Aventura', '14+');
+INSERT INTO infantil (usuario, apelido, faixa_etaria) VALUES ('662.596.684-05', 'Anatan', 'Livre');
 
 INSERT INTO gerencia (usuario_adulto, apelido_adulto, usuario_infantil, apelido_infantil) VALUES ('398.356.665-01', 'Maria Mãe', '398.356.665-01', 'Maria Filha');
 INSERT INTO gerencia (usuario_adulto, apelido_adulto, usuario_infantil, apelido_infantil) VALUES ('225.265.985-03', 'José', '225.265.985-03', 'Zezinho');
@@ -214,16 +215,16 @@ INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALU
 INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('464.566.956-15', 'Carla Segunda', 3, 50, '11/01/2017');
 INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('558.987.523-12', 'Ronaldo', 2, 12, '11/01/2017');
 INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('662.596.684-05', 'Natana', 7, 150, '24/02/2017');
-INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('662.596.684-05', 'Natana', 88, '24/02/2017');
+INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('662.596.684-05', 'Natana', 1, 88, '24/02/2017');
 
-INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('398.356.665-01 ', 'Maria Mãe', 'Ficção Científica', '10', '10/01/2017');
-INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('398.356.665-01 ', 'Maria Mãe', 'Terror', '10', '10/01/2017');
-INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('464.566.956-15', 'Carla', 'Ficção Científica', '8', '01/10/2017');
-INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('558.987.523-12', 'Ronaldo', 'Aventura', '8', '01/11/2017');
-INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('662.596.684-05', 'Natana', 'Infanto Juvenil', '4', '03/12/2017');
+INSERT INTO avaliagenero (usuario, apelido, genero, nota, data) VALUES ('398.356.665-01', 'Maria Mãe', 'Ficção Científica', '10', '10/01/2017');
+INSERT INTO avaliagenero (usuario, apelido, genero, nota, data) VALUES ('398.356.665-01', 'Maria Mãe', 'Terror', '10', '10/01/2017');
+INSERT INTO avaliagenero (usuario, apelido, genero, nota, data) VALUES ('464.566.956-15', 'Carla', 'Ficção Científica', '8', '01/10/2017');
+INSERT INTO avaliagenero (usuario, apelido, genero, nota, data) VALUES ('558.987.523-12', 'Ronaldo', 'Aventura', '8', '01/11/2017');
+INSERT INTO avaliagenero (usuario, apelido, genero, nota, data) VALUES ('662.596.684-05', 'Natana', 'Infanto Juvenil', '4', '03/12/2017');
 
-INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01 ', 'Maria Mãe', 1, 10, '12/06/2017', 'Achei o filme muito legal');
-INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01 ', 'Maria Filha', 1, 5, '10/06/2017','Adorei o novo vilão! Não tanto o ator');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01', 'Maria Mãe', 1, 10, '12/06/2017', 'Achei o filme muito legal');
+INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('398.356.665-01', 'Maria Filha', 1, 5, '10/06/2017','Adorei o novo vilão! Não tanto o ator');
 INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 3, 9, '11/12/2017','Gostei muito! Trouxeram de volta os mesmo atores!');
 INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 4, 8, '10/12/2017','Incrível poder ver Stars Wars com os efeitos especiais atuais ');
 INSERT INTO avaliafilme (perfil_usuario, perfil_apelido, filme, nota, data_avaliafilme, opiniao) VALUES ('464.566.956-15', 'Carla', 5, 7, '15/11/2017','Adorei! Quero fazer uma maratona!');
@@ -235,9 +236,9 @@ INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie
 INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Anatan', 1, 2, 9, 10, '29/11/2017', 'Phoebe é a melhor personagem de todas! Haha');
 
 INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('398.356.665-01', 'Maria Mãe', '558.987.523-12', 'Ronaldinho', 1, 'Cara, veja esse filme');
-INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('398.356.665-01', 'Maria Filha', '662.596.684-05', 'Natana', 4);
+INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video) VALUES ('398.356.665-01', 'Maria Filha', '662.596.684-05', 'Natana', 4);
 INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('225.265.985-03', 'José', '662.596.684-05', 'Anatan', 2, 'Man, mto bom esse filme');
-INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('225.265.985-03', 'Zezinho', '398.356.665-01', 'Maria Mãe', 2);
+INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video) VALUES ('225.265.985-03', 'Zezinho', '398.356.665-01', 'Maria Mãe', 2);
 INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('464.566.956-15', 'Carla', '225.265.985-03', 'José', 3, 'Quando puder asssista, serio!!!');
 INSERT INTO recomenda (usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ('558.987.523-12', 'Ronaldo', '225.265.985-03', 'Zezinho', 5, 'Esse é mais ou menos, veja se quiser');
 
@@ -252,12 +253,6 @@ INSERT INTO acesso (dispositivo, usuario, horario, ip) VALUES (2, '398.356.665-0
 INSERT INTO acesso (dispositivo, usuario, horario, ip) VALUES (3, '225.265.985-03', '19:00:28', '17418010858');
 INSERT INTO acesso (dispositivo, usuario, horario, ip) VALUES (4, '225.265.985-03', '08:00:01', '24818010270');
 INSERT INTO acesso (dispositivo, usuario, horario, ip) VALUES (5, '225.265.985-03', '11:30:47', '31578910271');
-
-INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('398.356.665-01', 'Básico');
-INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('225.265.985-03', 'Familiar');
-INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('464.566.956-15', 'Master');
-INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('558.987.523-12', 'Básico');
-INSERT INTO seleciona(usuario, planoDeAssinatura) VALUES ('662.596.684-05', 'Master');
 
 INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (1, '398.356.665-01', 'Cartao');
 INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (2, '398.356.665-01', 'Debito');
@@ -275,11 +270,11 @@ INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (1, '662.
 INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (2, '662.596.684-05', 'Debito');
 INSERT INTO cadastropagamento(id_opcao, usuario, tipopagamento) VALUES (3, '662.596.684-05', 'Paypal');
 
-INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '398.356.665-01', '8856 0234 5794 7688', 'MasterCard', '12/28', 'Ezequiel A Pereira', '773');
-INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '225.265.985-03', '7521 4586 9812 8648', 'VISA', '02/25', 'Andreia Martins Silva', '688');
-INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '464.566.956-15', '1254 7658 9412 8426', 'MasterCard', '08/20', 'Leandra Leal', '387');
-INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '558.987.523-12', '3204 6504 9825 8113', 'Elo', '06/26', 'Patrícia Nishida Yamaki', '426');
-INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '662.596.684-05', '1254 4596 4571 4563', 'American Express', '10/23', 'Heitor Gonzaga Filho', '443');
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '398.356.665-01', '8856023457947688', 'MasterCard', '12/28', 'Ezequiel A Pereira', '773');
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '225.265.985-03', '7521458698128648', 'VISA', '02/25', 'Andreia Martins Silva', '688');
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '464.566.956-15', '1254765894128426', 'MasterCard', '08/20', 'Leandra Leal', '387');
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '558.987.523-12', '3204650498258113', 'Elo', '06/26', 'Patrícia Nishida Yamaki', '426');
+INSERT INTO cartao(formadepagamento_id, formadepagamento_usuario, numero, bandeira, validade, nome, cod_seguranca) VALUES (1, '662.596.684-05', '1254459645714563', 'American Express', '10/23', 'Heitor Gonzaga Filho', '443');
 
 INSERT INTO debito(formadepagamento_id, formadepagamento_usuario, cpf, nome, agencia, conta, banco) VALUES(2, '398.356.665-01', '240.548.769-88', 'Ezequiel A Pereira', '1273', '1548545-7', 'Itau');
 INSERT INTO debito(formadepagamento_id, formadepagamento_usuario, cpf, nome, agencia, conta, banco) VALUES(2, '225.265.985-03', '125.578.468-12', 'Andreia Martins Silva', '5684', '425816-8', 'Bradesco');
@@ -293,16 +288,16 @@ INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) 
 INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '558.987.523-12', 'yamaki.nishidapatricia@uol.com.br', 'yanigap08137');
 INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '662.596.684-05', 'h.gfilho@hotmail.com', 'brotas032filho');
 
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (1, 'Básico', '398.356.665-01', 'Cartao'); 
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (2, 'Padrão', '398.356.665-01', 'Debito'); 
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (3, 'Familiar', '398.356.665-01', 'Paypal'); 
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (4, 'Master', '225.265.985-03', 'Cartao'); 
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (5, 'Premium', '225.265.985-03', 'Debito'); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (1, 'Básico', 1, '398.356.665-01'); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (2, 'Padrão', 2, '398.356.665-01'); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (3, 'Familiar', 3, '398.356.665-01'); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (4, 'Master', 1, '225.265.985-03'); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (5, 'Premium', 2, '225.265.985-03'); 
 
-INSERT INTO periodopaga(codigo, periodo) VALUES (1, '31/01/2017-27/02/2017');
-INSERT INTO periodopaga(codigo, periodo) VALUES (2, '28/02/2017-30/03/2017');
-INSERT INTO periodopaga(codigo, periodo) VALUES (3, '31/03/2017-29/04/2017');
-INSERT INTO periodopaga(codigo, periodo) VALUES (4, '30/04/2017-30/05/2017');
-INSERT INTO periodopaga(codigo, periodo) VALUES (5, '31/05/2017-29/06/2017');
+INSERT INTO periodopaga(codigo, periodo) VALUES (1, 'jan17');
+INSERT INTO periodopaga(codigo, periodo) VALUES (2, 'set17');
+INSERT INTO periodopaga(codigo, periodo) VALUES (3, 'mar17');
+INSERT INTO periodopaga(codigo, periodo) VALUES (4, 'ago17');
+INSERT INTO periodopaga(codigo, periodo) VALUES (5, 'fev17');
 
 COMMIT;
