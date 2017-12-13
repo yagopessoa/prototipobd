@@ -93,8 +93,8 @@ INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('464.566.956-15', 'Ma
 INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('558.987.523-12', 'Básico');
 INSERT INTO seleciona (usuario, planoDeAssinatura) VALUES ('662.596.684-05', 'Master');
  
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('398.356.665-01 ', 'Maria Mãe', 'Adulto');
-INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('398.356.665-01 ', 'Maria Filha', 'Infantil');
+INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('398.356.665-01', 'Maria Mãe', 'Adulto');
+INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('398.356.665-01', 'Maria Filha', 'Infantil');
 INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('225.265.985-03', 'José', 'Adulto');
 INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('225.265.985-03', 'Zezinho', 'Infantil');
 INSERT INTO tipoperfil (usuario, apelido, tipoPerfil) VALUES ('464.566.956-15', 'Carla', 'Adulto');
@@ -201,10 +201,20 @@ INSERT INTO episodio (serie, nro_temporada, nro_episodio, titulo, sinopse, faixa
 VALUES (13, 8, 1, 'Keeping it 100!', 'For the 100th episode, Ru challanges a new crop of queens',
 	'14+', '44min', 2016, 'English-USA', 'Português-Brasil');
 
+INSERT INTO assisteep (usuario, apelido, serie, temporada, episodio, minutos_assistidos, data) VALUES ('398.356.665-01', 'Maria Mãe', 9, 1, 1, 20, '10/01/2017');
+INSERT INTO assisteep (usuario, apelido, serie, temporada, episodio, minutos_assistidos, data) VALUES ('398.356.665-01', 'Maria Mãe', 9, 2, 1, 20, '11/01/2017');
+INSERT INTO assisteep (usuario, apelido, serie, temporada, episodio, minutos_assistidos, data) VALUES ('398.356.665-01', 'Maria Filha', 12, 1, 1, 30, '10/01/2017');
+INSERT INTO assisteep (usuario, apelido, serie, temporada, episodio, minutos_assistidos, data) VALUES ('225.265.985-03', 'José', 11, 1, 1, 44, '10/08/2017');
+INSERT INTO assisteep (usuario, apelido, serie, temporada, episodio, minutos_assistidos, data) VALUES ('558.987.523-12', 'Ronaldinho', 9, 1, 1, 21, '24/02/2017');
+INSERT INTO assisteep (usuario, apelido, serie, temporada, episodio, minutos_assistidos, data) VALUES ('558.987.523-12', 'Ronaldinho', 13, 7, 1, 40, '11/01/2017');
 
-INSERT INTO assisteep VALUES ();
-
-INSERT INTO assistefilme VALUES ();
+INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('225.265.985-03', 'Zezinho', 1, 50, '10/01/2017');
+INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('464.566.956-15', 'Carla', 1, 30, '11/01/2017');
+INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('464.566.956-15', 'Carla Segunda', 2, 100, '10/01/2017');
+INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('464.566.956-15', 'Carla Segunda', 3, 50, '11/01/2017');
+INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('558.987.523-12', 'Ronaldo', 2, 12, '11/01/2017');
+INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('662.596.684-05', 'Natana', 7, 150, '24/02/2017');
+INSERT INTO assistefilme (usuario, perfil, filme, minutos_assistidos, data) VALUES ('662.596.684-05', 'Natana', 88, '24/02/2017');
 
 INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('398.356.665-01 ', 'Maria Mãe', 'Ficção Científica', '10', '10/01/2017');
 INSERT INTO avaliagenero (usuario, apelido, nomeGenero, nota, dataAvaliaGenero) VALUES ('398.356.665-01 ', 'Maria Mãe', 'Terror', '10', '10/01/2017');
@@ -225,11 +235,13 @@ INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie
 INSERT INTO avaliaep (perfil_usuario, perfil_apelido, episodio, temporada, serie, nota, data_avaliafilme, opiniao) VALUES ('662.596.684-05', 'Anatan', 1, 2, 9, 10, '29/11/2017', 'Phoebe é a melhor personagem de todas! Haha');
 
 
+
 INSERT INTO recomenda(usuario_recomenda, perf_recomenda, usuario_recebe, perf_recebe, video, comentario) VALUES ();
 
 INSERT INTO acesso(dispositivo, usuario, horario, ip) VALUES ();
 
 INSERT INTO dispositivo(codigo, nome, versao_so) VALUES ();
+
 
 
 
@@ -273,9 +285,17 @@ INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) 
 INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '558.987.523-12', 'yamaki.nishidapatricia@uol.com.br', 'yanigap08137');
 INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '662.596.684-05', 'h.gfilho@hotmail.com', 'brotas032filho');
 
+
+
+
+
 /*Cadastro de formas de pagamentos*/
 INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
 
 INSERT INTO periodopaga(codigo, periodo) VALUES ();
+
+
+
+
 
 COMMIT;
