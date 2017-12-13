@@ -293,17 +293,16 @@ INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) 
 INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '558.987.523-12', 'yamaki.nishidapatricia@uol.com.br', 'yanigap08137');
 INSERT INTO paypal(formadepagamento_id, formadepagamento_usuario, email, senha) VALUES (3, '662.596.684-05', 'h.gfilho@hotmail.com', 'brotas032filho');
 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (1, 'Básico', '398.356.665-01', 'Cartao'); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (2, 'Padrão', '398.356.665-01', 'Debito'); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (3, 'Familiar', '398.356.665-01', 'Paypal'); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (4, 'Master', '225.265.985-03', 'Cartao'); 
+INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (5, 'Premium', '225.265.985-03', 'Debito'); 
 
-
-
-
-/*Cadastro de formas de pagamentos*/
-INSERT INTO paga(codigo, planodeassinatura, formadepagamento_id, formadepagamento_usuario) VALUES (); 
-
-INSERT INTO periodopaga(codigo, periodo) VALUES ();
-
-
-
-
+INSERT INTO periodopaga(codigo, periodo) VALUES (1, '31/01/2017-27/02/2017');
+INSERT INTO periodopaga(codigo, periodo) VALUES (2, '28/02/2017-30/03/2017');
+INSERT INTO periodopaga(codigo, periodo) VALUES (3, '31/03/2017-29/04/2017');
+INSERT INTO periodopaga(codigo, periodo) VALUES (4, '30/04/2017-30/05/2017');
+INSERT INTO periodopaga(codigo, periodo) VALUES (5, '31/05/2017-29/06/2017');
 
 COMMIT;
