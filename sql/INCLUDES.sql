@@ -21,6 +21,12 @@ INSERT INTO video (codigo, titulo, tipovideo) VALUES (10, 'Once Upon a Time', 'S
 INSERT INTO video (codigo, titulo, tipovideo) VALUES (11, 'Big Mouth', 'Série');
 INSERT INTO video (codigo, titulo, tipovideo) VALUES (12, 'Suits', 'Série');
 INSERT INTO video (codigo, titulo, tipovideo) VALUES (13, 'RuPauls Drag Race', 'Série');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (14, 'Matrix', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (15, 'Titanic', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (16, 'O Rei Le�o', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (17, 'As Branquelas', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (18, 'A Origem', 'Filme');
+INSERT INTO video (codigo, titulo, tipovideo) VALUES (19, 'Wolverine Origins', 'Filme');
 
 INSERT INTO genero VALUES ('Ficção Científica');
 INSERT INTO genero VALUES ('Infanto Juvenil');

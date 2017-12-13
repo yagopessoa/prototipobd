@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.text.Document;
+
 import java.sql.*;
 
 public class MainScreen {
@@ -580,6 +582,20 @@ public class MainScreen {
 	public void updateTable() {
 		try {
             String sql = "SELECT * FROM filme";
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery(sql);
+        	
+		    tabela.setModel(DbUtils.resultSetToTableModel(rs, connection));
+		    barraRolagem.repaint();
+		    frame.repaint();
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(frame, "Erro: "+ex.getMessage());
+		}
+	}
+	
+	public void gerarRelatorio() {
+		try {
+            String sql = "SELECT * FROM filme WHERE (idioma IN (SELECT idioma_prefere FROM adulto) AND legenda IN (SELECT legenda_prefere FROM adulto))";
             stmt = connection.createStatement();
             rs = stmt.executeQuery(sql);
         	
